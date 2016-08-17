@@ -4,9 +4,20 @@ var menuItems,
     navigationViewModel = new observable.Observable();
 
 menuItems = [{
-    "title": "Home View",
+    "title": "Login",
     "moduleName": "components/homeView/homeView",
     "icon": "\ue0dd"
+}, {
+    "title": "Sucursales",
+    "moduleName": "components/sucursales/sucursales",
+    "icon": "\ue0dd"
+}, {
+    "title": "Salir",
+    "moduleName": "components/homeView/homeView",
+    "icon": "\ue1ff",
+    "context": {
+        "logout": true
+    }
 }];
 
 navigationViewModel.set('menuItems', menuItems);

@@ -4,13 +4,125 @@
     {
       "type": "NativeScript:view",
       "name": "homeView",
-      "components": [],
-      "title": "Home View",
+      "components": [
+        {
+          "type": "NativeScript:authentication",
+          "name": "homeViewModel",
+          "dataProvider": "elBuenSabor",
+          "enableRegistration": true,
+          "gotoRegisterLabel": "Registrar",
+          "registerEmailLabel": "Correo",
+          "registerPasswordLabel": "Contraseña",
+          "registerNameLabel": "Usuario",
+          "registerLabel": "Crear",
+          "registerRedirect": "sucursales",
+          "gotoSigninLabel": "Regresar",
+          "enableLogout": true,
+          "logoutLabel": "Salir",
+          "enableRememberme": true,
+          "remembermeLabel": "Recordar",
+          "emailLabel": "Correo",
+          "passwordLabel": "Contraseña",
+          "signinLabel": "Iniciar",
+          "signinRedirect": "sucursales"
+        }
+      ],
+      "title": "Login",
+      "addToNavigation": true,
+      "icon": "home"
+    },
+    {
+      "type": "NativeScript:view",
+      "name": "sucursales",
+      "components": [
+        {
+          "type": "NativeScript:editableList",
+          "serverSideSortingField": "CreatedAt",
+          "serverSideSortingDirection": "asc",
+          "serverSidePaging": false,
+          "listExtraFields": [],
+          "detailExtraFields": [],
+          "addScreenExtraFields": [],
+          "editScreenExtraFields": [],
+          "components": [
+            {
+              "type": "NativeScript:editableListForm",
+              "components": [
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "nombre",
+                  "title": "Heading",
+                  "inputType": "heading",
+                  "headingSize": "h1",
+                  "dataBindingOptional": "nombre"
+                },
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "celular",
+                  "title": "Celular",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "celular"
+                },
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "telefono",
+                  "title": "Teléfono",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "telefono"
+                },
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "latitud",
+                  "title": "Latitud",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "latitud"
+                },
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "longitud",
+                  "title": "Longitud",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "longitud"
+                }
+              ],
+              "name": "editableListForm1",
+              "formType": "detail"
+            }
+          ],
+          "name": "sucursalesModel",
+          "dataProvider": "elBuenSabor",
+          "collection": "sucursales",
+          "headerField": "nombre",
+          "imageField": "imagen",
+          "subHeaderField": "activo",
+          "isMapView": false,
+          "addItemForm": false,
+          "editItemForm": false,
+          "deleteItemButton": false,
+          "pullToRefresh": false,
+          "endlessScroll": false,
+          "detailHeaderFieldSource": "static",
+          "detailHeaderFieldValue": "Detail",
+          "detailSubHeaderField": "activo",
+          "detailDescriptionField": "direccion",
+          "detailImageField": "imagen"
+        }
+      ],
+      "title": "Sucursales",
       "addToNavigation": true,
       "icon": "home"
     }
   ],
-  "dataProviders": [],
+  "dataProviders": [
+    {
+      "type": "NativeScript:dataProvider",
+      "name": "elBuenSabor",
+      "title": "ElBuenSabor / ElBuenSabor",
+      "source": "everlive",
+      "everliveKey": "gmwy25bqw8qvep10",
+      "offlineStorage": false
+    }
+  ],
   "name": "nativeScriptApp",
   "navigation": "listmenu",
   "transition": "none",

@@ -1,0 +1,94 @@
+<Page id="sucursalesItemDetailsXml" xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" navigatedTo="navigatedTo">
+    <Page.actionBar>
+        <widgets:action-bar />
+    </Page.actionBar>
+
+    <GridLayout rows="auto, *">
+        <GridLayout rows="auto" columns="*, *">
+
+
+        </GridLayout>
+        <StackLayout row="1">
+
+            <Image width="100" height="100" src="{{ imagen }}" />
+
+            <Label text="Detail" />
+
+            <Label text="{{ activo }}" />
+
+
+            <TextView text="{{ direccion }}" editable="false" />
+
+
+            <GridLayout columns="*, *" rows="auto, auto" cssClass="form-item">
+
+
+                <Label col="1" row="1" text="{{ nombre }}" cssClass="h1" textWrap="true" />
+
+                <!-- nombre content -->
+
+            </GridLayout>
+
+            <StackLayout cssClass="form-item-border" height="1"></StackLayout>
+
+
+            <GridLayout columns="*, *" rows="auto, auto" cssClass="form-item">
+
+
+                <Label row="1" text="Celular" cssClass="label" />
+
+                <Label col="1" row="1" text="{{ celular }}" cssClass="label" textWrap="true" />
+
+                <!-- celular content -->
+
+            </GridLayout>
+
+            <StackLayout cssClass="form-item-border" height="1"></StackLayout>
+
+
+            <GridLayout columns="*, *" rows="auto, auto" cssClass="form-item">
+
+
+                <Label row="1" text="Teléfono" cssClass="label" />
+
+                <Label col="1" row="1" text="{{ telefono }}" cssClass="label" textWrap="true" />
+
+                <!-- telefono content -->
+
+            </GridLayout>
+
+            <StackLayout cssClass="form-item-border" height="1"></StackLayout>
+
+
+            <GridLayout columns="*, *" rows="auto, auto" cssClass="form-item">
+
+
+                <Label row="1" text="Latitud" cssClass="label" />
+
+                <Label col="1" row="1" text="{{ latitud }}" cssClass="label" textWrap="true" />
+
+                <!-- latitud content -->
+
+            </GridLayout>
+
+            <StackLayout cssClass="form-item-border" height="1"></StackLayout>
+
+
+            <GridLayout columns="*, *" rows="auto, auto" cssClass="form-item">
+
+
+                <Label row="1" text="Longitud" cssClass="label" />
+
+                <Label col="1" row="1" text="{{ longitud }}" cssClass="label" textWrap="true" />
+
+                <!-- longitud content -->
+
+            </GridLayout>
+
+            <StackLayout cssClass="form-item-border" height="1"></StackLayout>
+            <!-- additional view content -->
+
+
+        </StackLayout>
+    </GridLayout>
+</Page>
