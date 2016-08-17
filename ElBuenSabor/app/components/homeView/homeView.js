@@ -34,7 +34,7 @@ function authError(error) {
 }
 
 function signinSuccess() {
-    helpers.navigate('components/sucursales/sucursales');
+    helpers.navigate('components/nosotros/nosotros');
 }
 
 function onSignin(data) {
@@ -45,7 +45,7 @@ function onSignin(data) {
 }
 
 function registerSuccess() {
-    helpers.navigate('components/sucursales/sucursales');
+    helpers.navigate('components/nosotros/nosotros');
 }
 
 function onRegister(data) {

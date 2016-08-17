@@ -1,4 +1,4 @@
-<Page id="homeViewXml" xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" loaded="pageLoaded">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" loaded="pageLoaded">
     <Page.actionBar>
         <widgets:action-bar />
     </Page.actionBar>

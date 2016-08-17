@@ -1,0 +1,32 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" loaded="pageLoaded">
+    <Page.actionBar>
+        <widgets:action-bar />
+    </Page.actionBar>
+
+    <StackLayout>
+
+        <StackLayout margin="10">
+            <GridLayout rows="25, auto" columns="auto, auto">
+                <Image rowSpan="2" src="~/resources/ic-pin.png" cssClass="about-image" />
+
+                <Label col="1" text="ElBuenSabor" verticalAlignment="top" />
+
+                <Label row="1" col="1" text="Version 1" verticalAlignment="top" />
+            </GridLayout>
+
+            <TextView text="App description xyz" editable="false" />
+
+            <Button text="Contactame" tap="{{ onContactTap }}" />
+
+            <Button text="Like us on Facebook" tap="{{ onFacebookTap }}" />
+
+            <Button text="Follow us on Twitter" tap="{{ onTwitterTap }}" />
+        </StackLayout>
+        <!-- additional view content -->
+
+        <!-- START_CUSTOM_CODE_nosotros -->
+        <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+        <!-- END_CUSTOM_CODE_nosotros -->
+    </StackLayout>
+</Page>

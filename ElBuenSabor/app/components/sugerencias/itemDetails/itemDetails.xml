@@ -1,0 +1,25 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" navigatedTo="navigatedTo">
+    <Page.actionBar>
+        <widgets:action-bar />
+    </Page.actionBar>
+
+    <GridLayout rows="auto, *">
+        <GridLayout rows="auto" columns="*, *">
+
+
+            <widgets:button col="1" text="Delete" tap="onDeleteItemTap" />
+
+        </GridLayout>
+        <StackLayout row="1">
+
+            <Label text="Sugerencia" />
+
+            <Label text="{{ detalle }}" />
+
+
+            <TextView text="{{ respuesta }}" editable="false" />
+
+            <!-- additional view content -->
+        </StackLayout>
+    </GridLayout>
+</Page>

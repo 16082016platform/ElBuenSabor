@@ -7,18 +7,16 @@
 
         <GridLayout rows="auto, *">
 
+            <Button text="Add" onTap="onAddItemTap" />
+
             <ListView row="1" items="{{ listItems }}" itemTap="onListViewItemTap">
                 <ListView.itemTemplate>
                     <StackLayout>
-                        <GridLayout columns="100, *" cssClass="padded-label">
+                        <GridLayout columns="*" cssClass="padded-label">
 
 
-                            <Image col="0" width="100" height="100" src="{{ image }}" />
-
-
-                            <StackLayout col="1" cssClass="padded-label-stack">
-                                <Label text="{{ header }}" cssClass="title-label" textWrap="true" />
-                                <Label text="{{ description }}" textWrap="true" />
+                            <StackLayout col="2" cssClass="padded-label-stack">
+                                <Label col="0" text="{{ header }}" cssClass="title-label" textWrap="true" />
                             </StackLayout>
 
                         </GridLayout>
@@ -30,9 +28,9 @@
         </GridLayout>
         <!-- additional view content -->
 
-        <!-- START_CUSTOM_CODE_sucursales -->
+        <!-- START_CUSTOM_CODE_direcciones -->
         <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
 
-        <!-- END_CUSTOM_CODE_sucursales -->
+        <!-- END_CUSTOM_CODE_direcciones -->
     </StackLayout>
 </Page>

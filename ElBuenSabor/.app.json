@@ -15,7 +15,7 @@
           "registerPasswordLabel": "Contraseña",
           "registerNameLabel": "Usuario",
           "registerLabel": "Crear",
-          "registerRedirect": "sucursales",
+          "registerRedirect": "nosotros",
           "gotoSigninLabel": "Regresar",
           "enableLogout": true,
           "logoutLabel": "Salir",
@@ -24,7 +24,7 @@
           "emailLabel": "Correo",
           "passwordLabel": "Contraseña",
           "signinLabel": "Iniciar",
-          "signinRedirect": "sucursales"
+          "signinRedirect": "nosotros"
         }
       ],
       "title": "Login",
@@ -102,7 +102,7 @@
           "pullToRefresh": false,
           "endlessScroll": false,
           "detailHeaderFieldSource": "static",
-          "detailHeaderFieldValue": "Detail",
+          "detailHeaderFieldValue": "Sucursal",
           "detailSubHeaderField": "activo",
           "detailDescriptionField": "direccion",
           "detailImageField": "imagen"
@@ -111,6 +111,160 @@
       "title": "Sucursales",
       "addToNavigation": true,
       "icon": "home"
+    },
+    {
+      "type": "NativeScript:view",
+      "name": "sugerencias",
+      "components": [
+        {
+          "type": "NativeScript:editableList",
+          "serverSideSortingField": "CreatedAt",
+          "serverSideSortingDirection": "asc",
+          "serverSidePaging": false,
+          "listExtraFields": [],
+          "detailExtraFields": [],
+          "addScreenExtraFields": [],
+          "editScreenExtraFields": [],
+          "components": [
+            {
+              "type": "NativeScript:editableListForm",
+              "components": [
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "detalle",
+                  "title": "Sugerencia",
+                  "inputType": "text",
+                  "titlePosition": "top",
+                  "inputTextType": "text",
+                  "placeholder": "Type here ...",
+                  "dataBinding": "detalle"
+                }
+              ],
+              "name": "editableListForm12",
+              "formType": "add"
+            }
+          ],
+          "name": "sugerenciasModel",
+          "dataProvider": "elBuenSabor",
+          "collection": "sugerencias",
+          "headerField": "detalle",
+          "isMapView": false,
+          "addItemForm": true,
+          "addScreenHeaderValue": "Crear Sugerencia",
+          "editItemForm": false,
+          "deleteItemButton": true,
+          "deleteItemConfirmation": true,
+          "pullToRefresh": false,
+          "endlessScroll": false,
+          "detailHeaderFieldSource": "static",
+          "detailHeaderFieldValue": "Sugerencia",
+          "detailSubHeaderField": "detalle",
+          "detailDescriptionField": "respuesta"
+        }
+      ],
+      "title": "Sugerencias",
+      "addToNavigation": true,
+      "icon": "bookmarks"
+    },
+    {
+      "type": "NativeScript:view",
+      "name": "direcciones",
+      "components": [
+        {
+          "type": "NativeScript:editableList",
+          "serverSideSortingField": "CreatedAt",
+          "serverSideSortingDirection": "asc",
+          "serverSidePaging": false,
+          "listExtraFields": [],
+          "detailExtraFields": [],
+          "addScreenExtraFields": [],
+          "editScreenExtraFields": [],
+          "components": [
+            {
+              "type": "NativeScript:editableListForm",
+              "components": [
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "direccionAdd",
+                  "title": "Dirección",
+                  "inputType": "text",
+                  "titlePosition": "top",
+                  "inputTextType": "text",
+                  "placeholder": "Type here ...",
+                  "dataBinding": "direccion"
+                },
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "latitudAdd",
+                  "title": "Latitud",
+                  "inputType": "text",
+                  "titlePosition": "top",
+                  "inputTextType": "text",
+                  "placeholder": "Type here ...",
+                  "dataBinding": "latitud"
+                },
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "longitudAdd",
+                  "title": "Longitud",
+                  "inputType": "text",
+                  "titlePosition": "top",
+                  "inputTextType": "text",
+                  "placeholder": "Type here ...",
+                  "dataBinding": "longitud"
+                }
+              ],
+              "name": "editableListForm38",
+              "formType": "add"
+            }
+          ],
+          "name": "direccionesModel",
+          "dataProvider": "elBuenSabor",
+          "collection": "direcciones",
+          "headerField": "direccion",
+          "isMapView": false,
+          "addItemForm": true,
+          "addScreenHeaderValue": "Crear Dirección",
+          "editItemForm": false,
+          "deleteItemButton": true,
+          "deleteItemConfirmation": true,
+          "pullToRefresh": false,
+          "endlessScroll": false,
+          "detailHeaderFieldSource": "static",
+          "detailHeaderFieldValue": "Detail",
+          "detailSubHeaderField": "latitud",
+          "detailDescriptionField": "longitud"
+        }
+      ],
+      "title": "Direcciones",
+      "addToNavigation": true,
+      "icon": "organize"
+    },
+    {
+      "type": "NativeScript:view",
+      "name": "nosotros",
+      "components": [
+        {
+          "type": "NativeScript:about",
+          "name": "nosotrosModel",
+          "appName": "ElBuenSabor",
+          "appVersion": "Version 1",
+          "appIcon": "ic-pin.png",
+          "appDescription": "App description xyz",
+          "contactButton": true,
+          "contactLabel": "Contactame",
+          "contactMail": "vemalavers@unc.edu.pe",
+          "facebookButton": true,
+          "facebookLabel": "Like us on Facebook",
+          "facebookLink": "https://www.facebook.com/Telerik",
+          "twitterButton": true,
+          "twitterLabel": "Follow us on Twitter",
+          "twitterLink": "https://twitter.com/telerik"
+        }
+      ],
+      "title": "Nosotros",
+      "addToNavigation": true,
+      "icon": "info"
     }
   ],
   "dataProviders": [

@@ -8,7 +8,7 @@ function navigatedTo(args) {
     var page = args.object;
 
     page.navigationContext.pageTitle =
-        'Detail';
+        'Sucursal';
 
     // context changes
 
