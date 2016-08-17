@@ -1,0 +1,28 @@
+{
+  "ProjectName": "ElBuenSabor",
+  "ProjectGuid": "f91f0046-645e-4867-9e24-55a15c41a78e",
+  "projectVersion": 1,
+  "AppIdentifier": "com.telerik.ElBuenSabor",
+  "DisplayName": "ElBuenSabor",
+  "Author": "",
+  "Description": "ElBuenSabor",
+  "BundleVersion": "1.0",
+  "AndroidVersionCode": "1",
+  "iOSDeviceFamily": [
+    "1",
+    "2"
+  ],
+  "iOSBackgroundMode": [],
+  "ProjectTypeGuids": "{F0A65104-D4F4-4012-B799-F612D75820F6}",
+  "AndroidPermissions": [
+    "android.permission.INTERNET"
+  ],
+  "DeviceOrientations": [
+    "Portrait",
+    "Landscape"
+  ],
+  "AndroidHardwareAcceleration": "true",
+  "iOSStatusBarStyle": "Default",
+  "FrameworkVersion": "2.1.0",
+  "Framework": "NativeScript"
+}
