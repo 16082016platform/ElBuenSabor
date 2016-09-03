@@ -7,17 +7,13 @@
         <GridLayout rows="auto" columns="*, *">
 
 
-            <widgets:button col="1" text="Delete" tap="onDeleteItemTap" />
-
         </GridLayout>
         <StackLayout row="1">
 
             <Label text="Detail" />
 
-            <Label text="{{ latitud }}" />
+            <Label text="{{ nombre }}" />
 
-
-            <TextView text="{{ longitud }}" editable="false" />
 
             <!-- additional view content -->
         </StackLayout>

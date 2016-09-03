@@ -5,18 +5,16 @@ var ViewModel,
 
 ViewModel = new Observable({
 
-    direccionAdd: '',
+    pageTitle: 'Tipos',
 
-    latitudAdd: '',
-
-    longitudAdd: '',
-
+    isLoading: false,
+    listItems: [],
     // additional properties
 
 });
 
-// START_CUSTOM_CODE_direccionesModel
+// START_CUSTOM_CODE_tipos
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
 
-// END_CUSTOM_CODE_direccionesModel
+// END_CUSTOM_CODE_tipos
 module.exports = ViewModel;

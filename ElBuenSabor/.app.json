@@ -168,80 +168,6 @@
     },
     {
       "type": "NativeScript:view",
-      "name": "direcciones",
-      "components": [
-        {
-          "type": "NativeScript:editableList",
-          "serverSideSortingField": "CreatedAt",
-          "serverSideSortingDirection": "asc",
-          "serverSidePaging": false,
-          "listExtraFields": [],
-          "detailExtraFields": [],
-          "addScreenExtraFields": [],
-          "editScreenExtraFields": [],
-          "components": [
-            {
-              "type": "NativeScript:editableListForm",
-              "components": [
-                {
-                  "type": "NativeScript:editableListFormField",
-                  "name": "direccionAdd",
-                  "title": "Dirección",
-                  "inputType": "text",
-                  "titlePosition": "top",
-                  "inputTextType": "text",
-                  "placeholder": "Type here ...",
-                  "dataBinding": "direccion"
-                },
-                {
-                  "type": "NativeScript:editableListFormField",
-                  "name": "latitudAdd",
-                  "title": "Latitud",
-                  "inputType": "text",
-                  "titlePosition": "top",
-                  "inputTextType": "text",
-                  "placeholder": "Type here ...",
-                  "dataBinding": "latitud"
-                },
-                {
-                  "type": "NativeScript:editableListFormField",
-                  "name": "longitudAdd",
-                  "title": "Longitud",
-                  "inputType": "text",
-                  "titlePosition": "top",
-                  "inputTextType": "text",
-                  "placeholder": "Type here ...",
-                  "dataBinding": "longitud"
-                }
-              ],
-              "name": "editableListForm38",
-              "formType": "add"
-            }
-          ],
-          "name": "direccionesModel",
-          "dataProvider": "elBuenSabor",
-          "collection": "direcciones",
-          "headerField": "direccion",
-          "isMapView": false,
-          "addItemForm": true,
-          "addScreenHeaderValue": "Crear Dirección",
-          "editItemForm": false,
-          "deleteItemButton": true,
-          "deleteItemConfirmation": true,
-          "pullToRefresh": false,
-          "endlessScroll": false,
-          "detailHeaderFieldSource": "static",
-          "detailHeaderFieldValue": "Detail",
-          "detailSubHeaderField": "latitud",
-          "detailDescriptionField": "longitud"
-        }
-      ],
-      "title": "Direcciones",
-      "addToNavigation": true,
-      "icon": "organize"
-    },
-    {
-      "type": "NativeScript:view",
       "name": "nosotros",
       "components": [
         {
@@ -265,6 +191,129 @@
       "title": "Nosotros",
       "addToNavigation": true,
       "icon": "info"
+    },
+    {
+      "type": "NativeScript:view",
+      "name": "tipos",
+      "components": [
+        {
+          "type": "NativeScript:editableList",
+          "serverSideSortingField": "CreatedAt",
+          "serverSideSortingDirection": "asc",
+          "serverSidePaging": false,
+          "listExtraFields": [],
+          "detailExtraFields": [],
+          "addScreenExtraFields": [],
+          "editScreenExtraFields": [],
+          "components": [
+            {
+              "type": "NativeScript:editableListForm",
+              "components": [],
+              "name": "editableListForm41",
+              "formType": "add"
+            }
+          ],
+          "name": "tiposModel",
+          "dataProvider": "elBuenSabor",
+          "collection": "tipos",
+          "headerField": "nombre",
+          "isMapView": false,
+          "addItemForm": false,
+          "editItemForm": false,
+          "deleteItemButton": false,
+          "pullToRefresh": false,
+          "endlessScroll": false,
+          "detailHeaderFieldSource": "static",
+          "detailHeaderFieldValue": "Detalle del tipo",
+          "detailSubHeaderField": "nombre"
+        }
+      ],
+      "title": "Tipos",
+      "addToNavigation": true,
+      "icon": "edit"
+    },
+    {
+      "type": "NativeScript:view",
+      "name": "categorias",
+      "components": [
+        {
+          "type": "NativeScript:editableList",
+          "serverSideSortingField": "CreatedAt",
+          "serverSideSortingDirection": "asc",
+          "serverSidePaging": false,
+          "listExtraFields": [],
+          "detailExtraFields": [],
+          "addScreenExtraFields": [],
+          "editScreenExtraFields": [],
+          "components": [],
+          "name": "categoriasModel",
+          "dataProvider": "elBuenSabor",
+          "collection": "categorias",
+          "headerField": "nombre",
+          "isMapView": false,
+          "addItemForm": false,
+          "editItemForm": false,
+          "deleteItemButton": false,
+          "pullToRefresh": false,
+          "endlessScroll": false,
+          "detailHeaderFieldSource": "static",
+          "detailHeaderFieldValue": "Detaille Categoria",
+          "detailSubHeaderField": "nombre"
+        }
+      ],
+      "title": "Categorias",
+      "addToNavigation": true,
+      "icon": "edit"
+    },
+    {
+      "type": "NativeScript:view",
+      "name": "platos",
+      "components": [
+        {
+          "type": "NativeScript:editableList",
+          "serverSideSortingField": "CreatedAt",
+          "serverSideSortingDirection": "asc",
+          "serverSidePaging": false,
+          "listExtraFields": [],
+          "detailExtraFields": [],
+          "addScreenExtraFields": [],
+          "editScreenExtraFields": [],
+          "components": [
+            {
+              "type": "NativeScript:editableListForm",
+              "components": [
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "precio",
+                  "title": "S/",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "precio"
+                }
+              ],
+              "name": "editableListForm48",
+              "formType": "list"
+            }
+          ],
+          "name": "platosModel",
+          "dataProvider": "elBuenSabor",
+          "collection": "platos",
+          "headerField": "nombre",
+          "imageField": "foto",
+          "subHeaderField": "etiqueta",
+          "isMapView": false,
+          "addItemForm": false,
+          "editItemForm": false,
+          "deleteItemButton": false,
+          "pullToRefresh": false,
+          "endlessScroll": false,
+          "detailHeaderFieldSource": "static",
+          "detailHeaderFieldValue": "Detail",
+          "detailSubHeaderField": "nombre"
+        }
+      ],
+      "title": "Platos",
+      "addToNavigation": true,
+      "icon": "bookmarks"
     }
   ],
   "dataProviders": [

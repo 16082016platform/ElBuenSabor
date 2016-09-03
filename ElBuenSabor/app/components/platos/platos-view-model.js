@@ -5,7 +5,7 @@ var ViewModel,
 
 ViewModel = new Observable({
 
-    pageTitle: 'Direcciones',
+    pageTitle: 'Platos',
 
     isLoading: false,
     listItems: [],
@@ -13,8 +13,8 @@ ViewModel = new Observable({
 
 });
 
-// START_CUSTOM_CODE_direcciones
+// START_CUSTOM_CODE_platos
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
 
-// END_CUSTOM_CODE_direcciones
+// END_CUSTOM_CODE_platos
 module.exports = ViewModel;

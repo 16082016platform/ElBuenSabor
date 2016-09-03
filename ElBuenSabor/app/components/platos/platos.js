@@ -3,27 +3,20 @@ var isInit = true,
     helpers = require('../../utils/widgets/helper'),
     navigationProperty = require('../../utils/widgets/navigation-property'),
 
-    service = require('./direcciones-service'),
+    service = require('./platos-service'),
     // additional requires
 
-    viewModel = require('./direcciones-view-model');
+    viewModel = require('./platos-view-model');
 
 function onListViewItemTap(args) {
     var itemData = viewModel.get('listItems')[args.index];
 
     helpers.navigate({
-        moduleName: 'components/direcciones/itemDetails/itemDetails',
+        moduleName: 'components/platos/itemDetails/itemDetails',
         context: itemData.details
     });
 }
 exports.onListViewItemTap = onListViewItemTap;
-
-function onAddItemTap(args) {
-    helpers.navigate({
-        moduleName: 'components/direcciones/addItemForm/addItemForm'
-    });
-}
-exports.onAddItemTap = onAddItemTap;
 
 function flattenLocationProperties(dataItem) {
     var propName, propValue,
@@ -53,7 +46,7 @@ function pageLoaded(args) {
 
     viewModel.set('isLoading', true);
     viewModel.set('listItems', []);
-
+        
     function _fetchData() {
         var context = page.navigationContext;
 
@@ -74,7 +67,13 @@ function pageLoaded(args) {
 
                 itemsList.push({
 
-                    header: item.direccion,
+                    icon: '\ue0dc', //globe
+
+                    image: item.foto,
+
+                    header: item.nombre,
+
+                    description: item.etiqueta,
 
                     // singleItem properties
                     details: item
@@ -96,8 +95,8 @@ function pageLoaded(args) {
     }
 }
 
-// START_CUSTOM_CODE_direcciones
+// START_CUSTOM_CODE_platos
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
 
-// END_CUSTOM_CODE_direcciones
+// END_CUSTOM_CODE_platos
 exports.pageLoaded = pageLoaded;
