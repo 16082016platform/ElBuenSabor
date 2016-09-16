@@ -308,7 +308,8 @@
           "endlessScroll": false,
           "detailHeaderFieldSource": "static",
           "detailHeaderFieldValue": "Detail",
-          "detailSubHeaderField": "nombre"
+          "detailSubHeaderField": "nombre",
+          "detailDescriptionField": "ingredientes"
         }
       ],
       "title": "Platos",

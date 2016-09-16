@@ -19,19 +19,6 @@ function onRequestFail(err) {
 }
 
 Service.prototype.getAllRecords = function(filter) {
-    
-    var filter = new Everlive.Query();
-    filter
-        .where()
-            .and()
-                .eq('precio', '10')
-                //.eq('Location', 'Second Sample Text')
-        .done();
-     
-    // Specify to return only subset of fields, not all fields
-    filter.select('precio');
-    
-    
     var expandExp,
         data = dataService.data('platos');
 
@@ -40,7 +27,10 @@ Service.prototype.getAllRecords = function(filter) {
         foto: {
             'SingleField': 'Uri'
         },
-
+		imagen: {
+            "TargetTypeName" : "imagenes",
+            "ReturnAs" : "expandImagen"
+        },
     };
 
     return data.expand(expandExp).get(filter)

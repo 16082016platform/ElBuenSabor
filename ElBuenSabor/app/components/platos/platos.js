@@ -20,7 +20,7 @@ exports.onListViewItemTap = onListViewItemTap;
 
 function flattenLocationProperties(dataItem) {
     var propName, propValue,
-        isLocation = function(value) {
+        isLocation = function (value) {
             return propValue && typeof propValue === 'object' &&
                 propValue.longitude && propValue.latitude;
         };
@@ -46,7 +46,7 @@ function pageLoaded(args) {
 
     viewModel.set('isLoading', true);
     viewModel.set('listItems', []);
-        
+
     function _fetchData() {
         var context = page.navigationContext;
 
@@ -57,19 +57,18 @@ function pageLoaded(args) {
         return service.getAllRecords();
     };
 
+
     _fetchData()
-        .then(function(result) {
+        .then(function (result) {
             var itemsList = [];
-
-            result.forEach(function(item) {
-
+            result.forEach(function (item) {
                 flattenLocationProperties(item);
 
                 itemsList.push({
 
                     icon: '\ue0dc', //globe
 
-                    image: item.foto,
+                    image: item.foto ? item.expandImagen.ruta : item.expandImagen.ruta, //image: item.foto,
 
                     header: item.nombre,
 
@@ -82,16 +81,17 @@ function pageLoaded(args) {
 
             viewModel.set('listItems', itemsList);
             viewModel.set('isLoading', false);
+            // alert(itemsList.length);
         })
         .catch(function onCatch() {
             viewModel.set('isLoading', false);
         });
     // additional pageLoaded
-
     if (isInit) {
         isInit = false;
 
         // additional pageInit
+
     }
 }
 
