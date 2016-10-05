@@ -21,10 +21,10 @@ ActionBar {
     border-color: #fff;
     width: 30;
 }
-#platosView .addCantidad .lessCantidad {
-    visibility: collapse;
+#platosView .addCantidad .disminuirCantidad {
+/*     visibility: collapse; */
 }
-#platosView .addCantidad .addNumero {
+#platosView .addCantidad .agregarCantidad {
     width: 80;
 }
 #platosView .blue-background {

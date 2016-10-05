@@ -28,11 +28,10 @@
             	    <GridLayout cssClass="{{ Mode === 'FAVOURITES' ? 'selectedBarItemBottomBorder' : 'barItemBottomBorder'}}"/>
                 </StackLayout>
             </GridLayout>
+                       
             
             
-            
-            
-            <ListView row="1" items="{{ listItems }}" itemTap="onListViewItemTap">
+            <ListView row="1" items="{{ listItems }}" itemTap="onListViewItemTap" style="background-image:url('~/images/platos/backgrounds/bgPlatos.jpg');">
             	
                 <ListView.itemTemplate>
                        
@@ -67,9 +66,9 @@
                                 <Label text="{{ 'S/' + details.precio }}" style="font-weight:bold;"/>
                             </StackLayout>
                             <StackLayout orientation="horizontal" cssClass="addCantidad" horizontalAlignment="right"> 
-                                   <Button text=" - "  cssClass="lessCantidad"/>
-                                   <Button text=" Add " cssClass="addNumero"/>
-                                   <Button text=" + " />
+                                   <Button id="{{ 'disminuir' + details.Id }}" text=" - "  cssClass="disminuirCantidad" tap="disminuirCantidad" />
+                                   <Button id="{{ 'agregar' + details.Id }}" text=" Agregar " cssClass="agregarCantidad" tap="agregarCantidad" />
+                                   <Button id="{{ 'aumentar' + details.Id }}" text=" + " tap="aumentarCantidad" />
                             </StackLayout>
                         </StackLayout>
                         

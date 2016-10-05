@@ -18,6 +18,44 @@ function onListViewItemTap(args) {
 }
 exports.onListViewItemTap = onListViewItemTap;
 
+function disminuirCantidad(args) {
+    alert("index:" + args.index);
+}
+exports.disminuirCantidad = disminuirCantidad;
+
+function agregarCantidad(args) {
+   var itemData = args.object;
+   var item = itemData.bindingContext;
+   
+    alert(JSON.stringify(item));
+    
+    // var details = viewModel.get('listItems')[1];
+    // alert(JSON.stringify(details));
+    
+    // var itemData = viewModel.get('listItems')[args.index];
+	// alert(itemData.details);
+    // alert(JSON.stringify(itemData.details));
+    // alert(args.index);
+    // alert(JSON.stringify(args));
+    // alert(JSON.stringify(args.toString()));
+    // alert(itemData.details.toString());
+}
+exports.agregarCantidad = agregarCantidad;
+
+function aumentarCantidad(args) {
+    var page = args.object;
+    var id = page.getViewById(args.object.id).id;
+    var yyy = id.replace("aumentar","disminuir");
+    // "disminuir10fe08b0-7f94-11e6-b74a-0f5c494ee820"
+    var xxx = page.getViewById(id).id ;
+    alert(xxx);
+    // alert("propertyname:" + args.object.id);
+    // alert("Object:" + args.object.text);
+    // alert("value:" + args.value);
+    // alert("value:" + args.value + "text" + args.propertyText + "css" + args.className);
+}
+exports.aumentarCantidad = aumentarCantidad;
+
 function flattenLocationProperties(dataItem) {
     var propName, propValue,
         isLocation = function (value) {
