@@ -22,7 +22,7 @@ ActionBar {
     width: 30;
 }
 #platosView .addCantidad .disminuirCantidad {
-/*     visibility: collapse; */
+	/*visibility: collapse;*/
 }
 #platosView .addCantidad .agregarCantidad {
     width: 80;

@@ -66,7 +66,7 @@
                                 <Label text="{{ 'S/' + details.precio }}" style="font-weight:bold;"/>
                             </StackLayout>
                             <StackLayout orientation="horizontal" cssClass="addCantidad" horizontalAlignment="right"> 
-                                   <Button id="{{ 'disminuir' + details.Id }}" text=" - "  cssClass="disminuirCantidad" tap="disminuirCantidad" />
+                                   <Button id="{{ 'disminuir' + details.Id }}" text=" - "  cssClass="disminuirCantidad" visibility="collapsed" tap="buttonTap" />
                                    <Button id="{{ 'agregar' + details.Id }}" text=" Agregar " cssClass="agregarCantidad" tap="agregarCantidad" />
                                    <Button id="{{ 'aumentar' + details.Id }}" text=" + " tap="aumentarCantidad" />
                             </StackLayout>

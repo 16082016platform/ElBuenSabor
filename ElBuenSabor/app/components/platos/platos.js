@@ -24,6 +24,24 @@ function disminuirCantidad(args) {
 exports.disminuirCantidad = disminuirCantidad;
 
 function agregarCantidad(args) {
+    var page = args.object;
+    var parent = page.parent;
+    var id= JSON.stringify(page.id).replace(/"/g,"");
+    if (parent) {
+        var btnAgregar = parent.getViewById(id);
+        if (btnAgregar) {
+            btnAgregar.text="1";
+            var btnDisminuir = parent.getViewById(id.replace(/agregar/g,"disminuir"));
+            btnDisminuir.visibility="visible";
+            //btnAgregar.visibility="collapse";
+            //alert(btnDisminuir.id);
+        }
+    }
+
+
+    return;
+   
+   
    var itemData = args.object;
    var item = itemData.bindingContext;
    
@@ -43,6 +61,46 @@ function agregarCantidad(args) {
 exports.agregarCantidad = agregarCantidad;
 
 function aumentarCantidad(args) {
+    var page = args.object;
+    var parent = page.parent;
+    var id= JSON.stringify(page.id).replace(/aumentar/g,"disminuir").replace(/"/g,"");
+    if (parent) {
+        var btnDisminuir = parent.getViewById(id);
+        if (btnDisminuir) {
+            btnDisminuir.text="1";
+            alert(btnDisminuir.id);
+        }
+    }
+    return;
+
+    var itemData = args.object;
+    var item = itemData.bindingContext;
+    var xxx = JSON.stringify(item);
+    //alert(xxx.replace(/,/g,"\n"));
+    
+    args.object.text = "1";
+    //args.object.isEnabled = false;
+
+
+    return;
+
+    var fileSystemModule = require("file-system");
+    var fileName = "persistedFile.json";
+
+    var file = fileSystemModule.knownFolders.documents().getFile(fileName);
+    var data = [{"id": "1", "value": "NativeScript"}]; 
+
+    // write data to the file, converted to a JSON string first
+    file.writeText(JSON.stringify(data));
+
+    // read data from the file
+    file.readText().then(function(content) {
+    // content contains the data read from the file
+        alert(content);
+    });
+
+    return;
+
     var page = args.object;
     var id = page.getViewById(args.object.id).id;
     var yyy = id.replace("aumentar","disminuir");
@@ -74,6 +132,7 @@ function flattenLocationProperties(dataItem) {
         }
     }
 }
+
 // additional functions
 
 function pageLoaded(args) {
