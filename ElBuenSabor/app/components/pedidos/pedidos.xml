@@ -1,20 +1,26 @@
-<Page id="pedidosView" xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" loaded="pageLoaded">
+<Page id="pedidosView"  xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" loaded="pageLoaded">
     <Page.actionBar>
         <widgets:action-bar />
     </Page.actionBar>
-  <DockLayout stretchLastChild="true">
-    <StackLayout dock="top">
-        <Label text="El carrito entá vacío"/>
-        <Label text=" 0"/>
-    </StackLayout>
-    <StackLayout dock="bottom" cssClass="footer" tap="confirmarPedido" >
-        <Label text="CONTINUE" />
-        <Label text="Delivery en 30 min aprox."/>
-    </StackLayout>
-    <StackLayout >
-        <Label text="Sub-total"/>
-        <Label text="IGV"/>
-        <Label text="TOTAL"/>
-    </StackLayout>
-  </DockLayout>
+
+    <!-- additional view content -->
+    <!-- START_CUSTOM_CODE_pedidos -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+    <!-- END_CUSTOM_CODE_pedidos -->
+    <DockLayout stretchLastChild="true">
+        <StackLayout dock="top">
+            <Label text="El carrito entá vacío"/>
+            <Label text=" 0"/>
+        </StackLayout>
+        <StackLayout dock="bottom" cssClass="footer" tap="confirmarPedido" >
+            <Label text="CONTINUE" />
+            <Label text="Delivery en 30 min aprox."/>
+        </StackLayout>
+        <StackLayout >
+            <Label text="Sub-total"/>
+            <Label text="IGV"/>
+            <Label text="TOTAL"/>
+        </StackLayout>
+    </DockLayout>
 </Page>

@@ -37,8 +37,7 @@
       "components": [
         {
           "type": "NativeScript:editableList",
-          "serverSideSortingField": "CreatedAt",
-          "serverSideSortingDirection": "asc",
+          "serverSideSorting": false,
           "serverSidePaging": false,
           "listExtraFields": [],
           "detailExtraFields": [],
@@ -60,28 +59,32 @@
                   "type": "NativeScript:editableListFormField",
                   "name": "celular",
                   "title": "Celular",
-                  "inputType": "shortText",
+                  "inputType": "textBlock",
+                  "wideFieldTitlePosition": "top",
                   "dataBindingOptional": "celular"
                 },
                 {
                   "type": "NativeScript:editableListFormField",
                   "name": "telefono",
                   "title": "Teléfono",
-                  "inputType": "shortText",
+                  "inputType": "textBlock",
+                  "wideFieldTitlePosition": "top",
                   "dataBindingOptional": "telefono"
                 },
                 {
                   "type": "NativeScript:editableListFormField",
                   "name": "latitud",
                   "title": "Latitud",
-                  "inputType": "shortText",
+                  "inputType": "textBlock",
+                  "wideFieldTitlePosition": "top",
                   "dataBindingOptional": "latitud"
                 },
                 {
                   "type": "NativeScript:editableListFormField",
                   "name": "longitud",
                   "title": "Longitud",
-                  "inputType": "shortText",
+                  "inputType": "textBlock",
+                  "wideFieldTitlePosition": "top",
                   "dataBindingOptional": "longitud"
                 }
               ],
@@ -99,6 +102,7 @@
           "addItemForm": false,
           "editItemForm": false,
           "deleteItemButton": false,
+          "deleteItemConfirmation": true,
           "pullToRefresh": false,
           "endlessScroll": false,
           "detailHeaderFieldSource": "static",
@@ -118,8 +122,7 @@
       "components": [
         {
           "type": "NativeScript:editableList",
-          "serverSideSortingField": "CreatedAt",
-          "serverSideSortingDirection": "asc",
+          "serverSideSorting": false,
           "serverSidePaging": false,
           "listExtraFields": [],
           "detailExtraFields": [],
@@ -198,8 +201,7 @@
       "components": [
         {
           "type": "NativeScript:editableList",
-          "serverSideSortingField": "CreatedAt",
-          "serverSideSortingDirection": "asc",
+          "serverSideSorting": false,
           "serverSidePaging": false,
           "listExtraFields": [],
           "detailExtraFields": [],
@@ -221,6 +223,7 @@
           "addItemForm": false,
           "editItemForm": false,
           "deleteItemButton": false,
+          "deleteItemConfirmation": true,
           "pullToRefresh": false,
           "endlessScroll": false,
           "detailHeaderFieldSource": "static",
@@ -234,87 +237,11 @@
     },
     {
       "type": "NativeScript:view",
-      "name": "categorias",
-      "components": [
-        {
-          "type": "NativeScript:editableList",
-          "serverSideSortingField": "CreatedAt",
-          "serverSideSortingDirection": "asc",
-          "serverSidePaging": false,
-          "listExtraFields": [],
-          "detailExtraFields": [],
-          "addScreenExtraFields": [],
-          "editScreenExtraFields": [],
-          "components": [],
-          "name": "categoriasModel",
-          "dataProvider": "elBuenSabor",
-          "collection": "categorias",
-          "headerField": "nombre",
-          "isMapView": false,
-          "addItemForm": false,
-          "editItemForm": false,
-          "deleteItemButton": false,
-          "pullToRefresh": false,
-          "endlessScroll": false,
-          "detailHeaderFieldSource": "static",
-          "detailHeaderFieldValue": "Detaille Categoria",
-          "detailSubHeaderField": "nombre"
-        }
-      ],
-      "title": "Categorias",
+      "name": "pedidos",
+      "components": [],
+      "title": "Pedidos",
       "addToNavigation": true,
-      "icon": "edit"
-    },
-    {
-      "type": "NativeScript:view",
-      "name": "platos",
-      "components": [
-        {
-          "type": "NativeScript:editableList",
-          "serverSideSortingField": "CreatedAt",
-          "serverSideSortingDirection": "asc",
-          "serverSidePaging": false,
-          "listExtraFields": [],
-          "detailExtraFields": [],
-          "addScreenExtraFields": [],
-          "editScreenExtraFields": [],
-          "components": [
-            {
-              "type": "NativeScript:editableListForm",
-              "components": [
-                {
-                  "type": "NativeScript:editableListFormField",
-                  "name": "precio",
-                  "title": "S/",
-                  "inputType": "shortText",
-                  "dataBindingOptional": "precio"
-                }
-              ],
-              "name": "editableListForm48",
-              "formType": "list"
-            }
-          ],
-          "name": "platosModel",
-          "dataProvider": "elBuenSabor",
-          "collection": "platos",
-          "headerField": "nombre",
-          "imageField": "foto",
-          "subHeaderField": "etiqueta",
-          "isMapView": false,
-          "addItemForm": false,
-          "editItemForm": false,
-          "deleteItemButton": false,
-          "pullToRefresh": false,
-          "endlessScroll": false,
-          "detailHeaderFieldSource": "static",
-          "detailHeaderFieldValue": "Detail",
-          "detailSubHeaderField": "nombre",
-          "detailDescriptionField": "ingredientes"
-        }
-      ],
-      "title": "Platos",
-      "addToNavigation": true,
-      "icon": "bookmarks"
+      "icon": "home"
     }
   ],
   "dataProviders": [

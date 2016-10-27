@@ -18,65 +18,115 @@ function onListViewItemTap(args) {
 }
 exports.onListViewItemTap = onListViewItemTap;
 
-function disminuirCantidad(args) {
-    alert("index:" + args.index);
+function aumentarCantidad(args) {
+    // alert("index:" + args.index);
+
+    // for (var i=0; i<jsonObj.length; i++) {
+    //     if (jsonObj[i].Id == 3) {
+    //         jsonObj[i].Username = "Thomas";
+    //         break;
+    //     }
+    // }
+
+    // read data from the file
+    var fileSystemModule = require("file-system");
+    var fileName = "platosSeleccionados.json";
+    var file = fileSystemModule.knownFolders.documents().getFile(fileName);
+
+    // alert(JSON.stringify(file));
+
+
+    file.readText().then(function (content) {
+        // content contains the data read from the file
+        alert(content);
+    });
 }
 exports.disminuirCantidad = disminuirCantidad;
 
 function agregarCantidad(args) {
-    // var page = args.object;
-    // var parent = page.parent;
-    // var id= JSON.stringify(page.id).replace(/"/g,"");
-    // if (parent) {
-    //     var btnAgregar = parent.getViewById(id);
-    //     if (btnAgregar) {
-    //         btnAgregar.text="1";
-    //         var btnDisminuir = parent.getViewById(id.replace(/agregar/g,"disminuir"));
-    //         btnDisminuir.visibility="visible";
-    //         //btnAgregar.visibility="collapse";
-    //         //alert(btnDisminuir.id);
-    //     }
-    // }
-
     var page = args.object;
+    var item = page.bindingContext.details;
+
     var parent = page.parent;
-    var id= JSON.stringify(page.id).replace(/"/g,"");
-     
+    var id = JSON.stringify(page.id).replace(/"/g, "");
+
     args.object.text = "1";
-    args.object.isEnabled = false;
-     
-    var btnAugmentar = parent.getViewById(id.replace(/agregar/g,"disminuir"));
-    btnAugmentar.visibility="collapse";
-    btnAugmentar.visibility="visible";
-    return;
-   
-   
-   var itemData = args.object;
-   var item = itemData.bindingContext;
-   
-    alert(JSON.stringify(item));
-    
-    // var details = viewModel.get('listItems')[1];
-    // alert(JSON.stringify(details));
-    
-    // var itemData = viewModel.get('listItems')[args.index];
-	// alert(itemData.details);
-    // alert(JSON.stringify(itemData.details));
-    // alert(args.index);
-    // alert(JSON.stringify(args));
-    // alert(JSON.stringify(args.toString()));
-    // alert(itemData.details.toString());
+    // args.object.isEnabled = false;
+
+    var btnDisminuir = parent.getViewById(id.replace(/agregar/g, "disminuir"));
+    btnDisminuir.visibility = "visible"; //NOT WORK
+
+    var fileSystemModule = require("file-system");
+    var fileName = "platosSeleccionados.json";
+    var file = fileSystemModule.knownFolders.documents().getFile(fileName);
+
+    file.readText().then(function (content) {
+        // content contains the data read from the file
+        sumarPlato(item, content);
+    });
 }
 exports.agregarCantidad = agregarCantidad;
 
-function aumentarCantidad(args) {
+//WRITE NEW ITEM  NOR WORK
+function sumarPlato(item, content) {
+    var fileSystemModule = require("file-system");
+    var fileName = "platosSeleccionados.json";
+    var file = fileSystemModule.knownFolders.documents().getFile(fileName);
+
+    file.writeText(JSON.stringify(item));
+    
+    return;
+
+
+
+    // content contains the data read from the file
+    if (content.length > 0) {
+        var existe = false;
+        for (var i = 0; i < content.length; i++) {
+            if (content[i].Id == item.Id) {
+                content[i].cantidad = content[i].cantidad + 1;
+                var data = [{ "id": "1", "value": "NativeScript" }];
+                file.writeText(JSON.stringify(data));
+                existe = true;
+                // break;
+            }
+        }
+        //alert(existe);
+        item.push({ "cantidad": "1" });
+        var data = [{ "id": "1", "value": "NativeScript" }];
+        // read data from the file
+        var fileSystemModule = require("file-system");
+        var fileName = "platosSeleccionados.json";
+        var file = fileSystemModule.knownFolders.documents().getFile(fileName);
+
+        file.writeText(JSON.stringify(item));
+        alert(item);
+    } else {
+        alert(2);
+        item.push({ "cantidad": "1" });
+
+        // read data from the file
+        var fileSystemModule = require("file-system");
+        var fileName = "platosSeleccionados.json";
+        var file = fileSystemModule.knownFolders.documents().getFile(fileName);
+
+        // alert(JSON.stringify(file));
+
+        var data = [{ "id": "1", "value": "NativeScript" }];
+        file.writeText(JSON.stringify(item));
+
+    }
+
+}
+
+function disminuirCantidad(args) {
     var page = args.object;
     var parent = page.parent;
-    var id= JSON.stringify(page.id).replace(/aumentar/g,"disminuir").replace(/"/g,"");
+    var id = JSON.stringify(page.id).replace(/aumentar/g, "disminuir").replace(/"/g, "");
     if (parent) {
         var btnDisminuir = parent.getViewById(id);
         if (btnDisminuir) {
-            btnDisminuir.text="1";
+            btnDisminuir.text = "1";
             alert(btnDisminuir.id);
         }
     }
@@ -86,25 +136,22 @@ function aumentarCantidad(args) {
     var item = itemData.bindingContext;
     var xxx = JSON.stringify(item);
     //alert(xxx.replace(/,/g,"\n"));
-    
+
     args.object.text = "1";
     //args.object.isEnabled = false;
 
 
     return;
 
-    var fileSystemModule = require("file-system");
-    var fileName = "persistedFile.json";
-
     var file = fileSystemModule.knownFolders.documents().getFile(fileName);
-    var data = [{"id": "1", "value": "NativeScript"}]; 
+    var data = [{ "id": "1", "value": "NativeScript" }];
 
     // write data to the file, converted to a JSON string first
     file.writeText(JSON.stringify(data));
 
     // read data from the file
-    file.readText().then(function(content) {
-    // content contains the data read from the file
+    file.readText().then(function (content) {
+        // content contains the data read from the file
         alert(content);
     });
 
@@ -112,9 +159,9 @@ function aumentarCantidad(args) {
 
     var page = args.object;
     var id = page.getViewById(args.object.id).id;
-    var yyy = id.replace("aumentar","disminuir");
+    var yyy = id.replace("aumentar", "disminuir");
     // "disminuir10fe08b0-7f94-11e6-b74a-0f5c494ee820"
-    var xxx = page.getViewById(id).id ;
+    var xxx = page.getViewById(id).id;
     alert(xxx);
     // alert("propertyname:" + args.object.id);
     // alert("Object:" + args.object.text);

@@ -23,12 +23,9 @@ menuItems = [{
     "title": "Tipos",
     "moduleName": "components/tipos/tipos"
 }, {
-    "title": "Categorias",
-    "moduleName": "components/categorias/categorias"
-}, {
     "title": "Platos",
     "moduleName": "components/platos/platos",
-    "icon": "\ue204"
+    "icon": "\ue0dd"
 }, {
     "title": "Salir",
     "moduleName": "components/homeView/homeView",

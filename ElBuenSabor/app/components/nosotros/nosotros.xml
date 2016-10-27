@@ -1,27 +1,29 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" loaded="pageLoaded">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" loaded="pageLoaded" id="nosotrosScreen" cssClass="screen">
     <Page.actionBar>
         <widgets:action-bar />
     </Page.actionBar>
 
     <StackLayout>
 
-        <StackLayout margin="10">
-            <GridLayout rows="25, auto" columns="auto, auto">
-                <Image rowSpan="2" src="~/resources/ic-pin.png" cssClass="about-image" />
+        <ScrollView>
+            <StackLayout margin="10">
+                <GridLayout rows="25, auto" columns="auto, auto">
+                    <Image rowSpan="2" src="~/resources/ic-pin.png" cssClass="about-image" />
 
-                <Label col="1" text="ElBuenSabor" verticalAlignment="top" />
+                    <Label col="1" text="ElBuenSabor" verticalAlignment="top" />
 
-                <Label row="1" col="1" text="Version 1" verticalAlignment="top" />
-            </GridLayout>
+                    <Label row="1" col="1" text="Version 1" verticalAlignment="top" />
+                </GridLayout>
 
-            <TextView text="App description xyz" editable="false" />
+                <TextView text="App description xyz" editable="false" />
 
-            <Button text="Contactame" tap="{{ onContactTap }}" />
+                <Button text="Contactame" tap="{{ onContactTap }}" />
 
-            <Button text="Like us on Facebook" tap="{{ onFacebookTap }}" />
+                <Button text="Like us on Facebook" tap="{{ onFacebookTap }}" />
 
-            <Button text="Follow us on Twitter" tap="{{ onTwitterTap }}" />
-        </StackLayout>
+                <Button text="Follow us on Twitter" tap="{{ onTwitterTap }}" />
+            </StackLayout>
+        </ScrollView>
         <!-- additional view content -->
 
         <!-- START_CUSTOM_CODE_nosotros -->

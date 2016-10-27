@@ -1,4 +1,4 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" loaded="pageLoaded">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" loaded="pageLoaded" id="sugerenciasScreen" cssClass="screen">
     <Page.actionBar>
         <widgets:action-bar />
     </Page.actionBar>
@@ -7,7 +7,7 @@
 
         <GridLayout rows="auto, *">
 
-            <Button text="Add" onTap="onAddItemTap" />
+            <widgets:button text="Add" tap="onAddItemTap" />
 
             <ListView row="1" items="{{ listItems }}" itemTap="onListViewItemTap">
                 <ListView.itemTemplate>

@@ -1,25 +1,30 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" navigatedTo="navigatedTo">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" navigatedTo="navigatedTo" id="sugerenciasModelDetailsScreen" cssClass="screen">
     <Page.actionBar>
         <widgets:action-bar />
     </Page.actionBar>
 
-    <GridLayout rows="auto, *">
-        <GridLayout rows="auto" columns="*, *">
+    <ScrollView>
+        <StackLayout>
+
+            <GridLayout rows="auto, *">
+                <GridLayout rows="auto" columns="*, *">
 
 
-            <widgets:button col="1" text="Delete" tap="onDeleteItemTap" />
+                    <widgets:button col="1" text="Delete" tap="onDeleteItemTap" />
 
-        </GridLayout>
-        <StackLayout row="1">
-
-            <Label text="Sugerencia" />
-
-            <Label text="{{ detalle }}" />
+                </GridLayout>
+                <StackLayout row="1">
 
 
-            <TextView text="{{ respuesta }}" editable="false" />
+                    <Label text="{{ detalle }}" />
 
-            <!-- additional view content -->
+
+                    <TextView text="{{ respuesta }}" />
+
+                    <!-- additional view content -->
+                </StackLayout>
+            </GridLayout>
+
         </StackLayout>
-    </GridLayout>
+    </ScrollView>
 </Page>
