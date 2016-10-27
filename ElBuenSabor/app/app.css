@@ -27,11 +27,19 @@ ActionBar {
 #platosView .addCantidad .agregarCantidad {
     width: 80;
 }
-#platosView .blue-background {
+#platosView .encabezados {
     background-color: #f86a44;
     color: #fff;
     font-style: italic;
     /*     font-weight: bold; */
+}
+
+#pedidosView .footer ,
+#platosView .footer {
+    color: #fff;
+    background-color: #16a2b3;
+    font-style: italic;
+    font-weight: bold; 
 }
 
 /* 16a2b3 */

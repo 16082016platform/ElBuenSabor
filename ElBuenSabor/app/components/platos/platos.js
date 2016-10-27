@@ -24,21 +24,30 @@ function disminuirCantidad(args) {
 exports.disminuirCantidad = disminuirCantidad;
 
 function agregarCantidad(args) {
+    // var page = args.object;
+    // var parent = page.parent;
+    // var id= JSON.stringify(page.id).replace(/"/g,"");
+    // if (parent) {
+    //     var btnAgregar = parent.getViewById(id);
+    //     if (btnAgregar) {
+    //         btnAgregar.text="1";
+    //         var btnDisminuir = parent.getViewById(id.replace(/agregar/g,"disminuir"));
+    //         btnDisminuir.visibility="visible";
+    //         //btnAgregar.visibility="collapse";
+    //         //alert(btnDisminuir.id);
+    //     }
+    // }
+
     var page = args.object;
     var parent = page.parent;
     var id= JSON.stringify(page.id).replace(/"/g,"");
-    if (parent) {
-        var btnAgregar = parent.getViewById(id);
-        if (btnAgregar) {
-            btnAgregar.text="1";
-            var btnDisminuir = parent.getViewById(id.replace(/agregar/g,"disminuir"));
-            btnDisminuir.visibility="visible";
-            //btnAgregar.visibility="collapse";
-            //alert(btnDisminuir.id);
-        }
-    }
-
-
+     
+    args.object.text = "1";
+    args.object.isEnabled = false;
+     
+    var btnAugmentar = parent.getViewById(id.replace(/agregar/g,"disminuir"));
+    btnAugmentar.visibility="collapse";
+    btnAugmentar.visibility="visible";
     return;
    
    
@@ -113,6 +122,16 @@ function aumentarCantidad(args) {
     // alert("value:" + args.value + "text" + args.propertyText + "css" + args.className);
 }
 exports.aumentarCantidad = aumentarCantidad;
+
+
+
+function buttonForwardTap(args) {
+    helpers.navigate({
+        moduleName: 'components/pedidos/pedidos'
+    });
+}
+exports.buttonForwardTap = buttonForwardTap;
+
 
 function flattenLocationProperties(dataItem) {
     var propName, propValue,

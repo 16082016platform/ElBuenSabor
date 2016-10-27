@@ -3,7 +3,7 @@ var provider,
 
 provider = new TelerikBackendServices({
 
-    appId: 'xsknjojatekbn3qe',
+    appId: 'rytq3wbt117hmpst',
     scheme: 'https'
 });
 
