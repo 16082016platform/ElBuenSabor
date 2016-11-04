@@ -19,16 +19,6 @@ function onListViewItemTap(args) {
 exports.onListViewItemTap = onListViewItemTap;
 
 function aumentarCantidad(args) {
-    // alert("index:" + args.index);
-
-    // for (var i=0; i<jsonObj.length; i++) {
-    //     if (jsonObj[i].Id == 3) {
-    //         jsonObj[i].Username = "Thomas";
-    //         break;
-    //     }
-    // }
-
-    // read data from the file
     var fileSystemModule = require("file-system");
     var fileName = "platosSeleccionados.json";
     var file = fileSystemModule.knownFolders.documents().getFile(fileName);
