@@ -41,7 +41,7 @@
                             </StackLayout>
                             <StackLayout orientation="horizontal" cssClass="addCantidad" horizontalAlignment="right">
                                 <Button id="{{ 'disminuir' + details.Id }}" text=" - "  cssClass="disminuirCantidad" opacity="0" tap="disminuirCantidad" />
-                                <Button id="{{ 'agregar' + details.Id }}" text="{{ cantidad  }}" cssClass="agregarCantidad" tap="agregarCantidad" />
+                                <Button id="{{ 'agregar' + details.Id }}" text="Agregar" cssClass="agregarCantidad" tap="agregarCantidad" />
                                 <Button id="{{ 'aumentar' + details.Id }}" text=" + " tap="aumentarCantidad" />
                             </StackLayout>
                         </StackLayout>
@@ -53,8 +53,8 @@
             <!-- will be seen as a footer -->
             <GridLayout row="2" cssClass="footer">
                 <StackLayout tap="buttonForwardTap">
-                    <Label text="El carrito entá vacío"/>
-                    <Label text=" 0"/>
+                    <Label id="mensajePedidos" text="El carrito entá vacío"/>
+                    <Label id="totalPedidos" text=" 0"/>
                 </StackLayout>
             </GridLayout>
         </GridLayout>

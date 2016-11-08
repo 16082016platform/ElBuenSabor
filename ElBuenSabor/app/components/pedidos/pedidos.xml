@@ -14,7 +14,7 @@
             <Label text=" 0"/>
         </StackLayout>
         <StackLayout dock="bottom" cssClass="footer" tap="confirmarPedido" >
-            <Label text="CONTINUE" />
+            <Label id="aaa" text="CONTINUE" />
             <Label text="Delivery en 30 min aprox."/>
         </StackLayout>
         <StackLayout >

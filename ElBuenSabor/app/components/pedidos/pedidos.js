@@ -13,10 +13,15 @@ function pageLoaded(args) {
     page.bindingContext = viewModel;
     // additional pageLoaded
 
+    var item = page.getViewById("aaa");
+
+    readFile(item);
+
     if (isInit) {
         isInit = false;
 
         // additional pageInit
+        
     }
 }
 
@@ -26,6 +31,24 @@ function pageLoaded(args) {
 // END_CUSTOM_CODE_pedidos
 exports.pageLoaded = pageLoaded;
 
+function readFile(page) {
+
+    var fs = require("file-system");
+    var documents = fs.knownFolders.documents();
+
+    var fileName = "platosSeleccionados.json";
+    var myFile = documents.getFile(fileName);
+
+    myFile.readText()
+        .then(function (data) {
+            // Successfully read the file's content.
+            alert(page);
+        }, function (error) {
+            // Failed to read from the file.
+            alert(error);
+        });
+}
+
 function confirmarPedido(args) {
     var fileSystemModule = require("file-system");//
     var fileName = "persistedFile.json";//
@@ -33,13 +56,5 @@ function confirmarPedido(args) {
     // var file = fileSystemModule.knownFoldesaddasdadsadadsadsadsad/ddssdsdcsdjkkkkrs.documents().getFile(fileName);
     var data = [{"id": "1", "value": "NativeScript"}]; 
 
-    // write data to the file, converted to a JSON string first
-    file.writeText(JSON.stringify(data));
-
-    // read data from the file
-    file.readText().then(function(content) {
-        // content contains the data read from the file
-        alert(content);
-    });
+    alert(data);
 }
-exports.confirmarPedido = confirmarPedido;

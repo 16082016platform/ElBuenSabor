@@ -49,28 +49,40 @@ function flattenLocationProperties(dataItem) {
 
 
 //actualizar footer y botones
-function verificarCantidad(id, total) {
+function verificarCantidad(page) {
+
     var fs = require("file-system");
     var documents = fs.knownFolders.documents();
     var fileName = "platosSeleccionados.json";
     var myFile = documents.getFile(fileName);
-    var cantidad = 0;
+    var total = 0, cantidad = 0;
     myFile.readText()
         .then(function (data) {
             // Successfully read the file's content.
             data = JSON.parse(data);
             for (var i = 0; i < data.length; i++) {
-                if (data[i].Id == id) {
-                    cantidad = data[i].cantidad;
-                    alert(cantidad);
-                }
-                total += (data[i].cantidad * data[i].precio) ;
+                cantidad += data[i].cantidad;
+                total += (data[i].cantidad * data[i].precio);
+                var id = "agregar" + data[i].Id;
+                var btnCantidad = page.getViewById(id);
+                // btnCantidad = page.getViewById("agregar7d587a50-9bc2-11e6-941a-934a10b681a9");
+                alert(btnCantidad);
+                // btnCantidad.text = data[i].cantidad;
+            }
+            var btnTotal = page.getViewById("totalPedidos");
+            var btnMensaje = page.getViewById("mensajePedidos");
+            if (cantidad > 0) {
+                btnMensaje.text = "Confirmar pedido";
+                btnTotal.text = "$" + total + " (" + cantidad + "platos)";
+            } else {
+                btnMensaje.text = "El carrito entá vacío";
+                btnTotal.text = 0;
             }
         }, function (error) {
             // Failed to read from the file.
             alert(error);
         });
-        return cantidad;
+
 }
 
 
@@ -99,7 +111,6 @@ function pageLoaded(args) {
     _fetchData()
         .then(function (result) {
             var itemsList = [];
-
             result.forEach(function (item) {
                 flattenLocationProperties(item);
 
@@ -113,8 +124,6 @@ function pageLoaded(args) {
 
                     description: item.etiqueta,
 
-                    cantidad: 1,
-
                     // singleItem properties
                     details: item,
                 });
@@ -122,18 +131,21 @@ function pageLoaded(args) {
 
             viewModel.set('listItems', itemsList);
             viewModel.set('isLoading', false);
-            alert(itemsList.length);
+
         })
         .catch(function onCatch() {
             viewModel.set('isLoading', false);
         });
     // additional pageLoaded
+
+    verificarCantidad(page);
+
+
     if (isInit) {
         isInit = false;
-
         // additional pageInit
-
     }
+
 }
 
 // START_CUSTOM_CODE_platos
@@ -145,8 +157,14 @@ exports.pageLoaded = pageLoaded;
 
 
 function aumentarCantidad(args) {
-    // clearFile();
-    // agregarCantidad(args)
+    var page = args.object;
+    var parent = page.parent;
+    var id = JSON.stringify(page.id).replace(/"/g, "");
+
+    // args.object.isEnabled = false;
+
+    var btnAgregar = parent.getViewById(id.replace(/aumentar/g, "agregar"));
+    alert(btnAgregar);
 }
 exports.disminuirCantidad = disminuirCantidad;
 
@@ -230,7 +248,7 @@ function agregarCantidad(args) {
             // Failed to read from the file.
             alert(error);
         });
-
+    verificarCantidad(parent.parent.parent.parent);
 }
 exports.agregarCantidad = agregarCantidad;
 
@@ -255,6 +273,9 @@ function readFile(item) {
             alert(error);
         });
 }
+
+
+
 
 //Clear file function
 function clearFile() {
@@ -343,7 +364,7 @@ function disminuirCantidad(args) {
             // Failed to read from the file.
             alert(error);
         });
-
+    verificarCantidad(parent.parent.parent.parent);
 }
 exports.aumentarCantidad = aumentarCantidad;
 
