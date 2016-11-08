@@ -18,148 +18,6 @@ function onListViewItemTap(args) {
 }
 exports.onListViewItemTap = onListViewItemTap;
 
-function aumentarCantidad(args) {
-    var fileSystemModule = require("file-system");
-    var fileName = "platosSeleccionados.json";
-    var file = fileSystemModule.knownFolders.documents().getFile(fileName);
-
-    // alert(JSON.stringify(file));
-
-
-    file.readText().then(function (content) {
-        // content contains the data read from the file
-        alert(content);
-    });
-}
-exports.disminuirCantidad = disminuirCantidad;
-
-function agregarCantidad(args) {
-    var page = args.object;
-    var item = page.bindingContext.details;
-
-    var parent = page.parent;
-    var id = JSON.stringify(page.id).replace(/"/g, "");
-
-    args.object.text = "1";
-    // args.object.isEnabled = false;
-
-    var btnDisminuir = parent.getViewById(id.replace(/agregar/g, "disminuir"));
-    btnDisminuir.visibility = "visible"; //NOT WORK
-
-    var fileSystemModule = require("file-system");
-    var fileName = "platosSeleccionados.json";
-    var file = fileSystemModule.knownFolders.documents().getFile(fileName);
-
-    file.readText().then(function (content) {
-        // content contains the data read from the file
-        sumarPlato(item, content);
-    });
-}
-exports.agregarCantidad = agregarCantidad;
-
-//WRITE NEW ITEM  NOR WORK
-function sumarPlato(item, content) {
-    var fileSystemModule = require("file-system");
-    var fileName = "platosSeleccionados.json";
-    var file = fileSystemModule.knownFolders.documents().getFile(fileName);
-
-    file.writeText(JSON.stringify(item));
-    
-    return;
-
-
-
-    // content contains the data read from the file
-    if (content.length > 0) {
-        var existe = false;
-        for (var i = 0; i < content.length; i++) {
-            if (content[i].Id == item.Id) {
-                content[i].cantidad = content[i].cantidad + 1;
-                var data = [{ "id": "1", "value": "NativeScript" }];
-                file.writeText(JSON.stringify(data));
-                existe = true;
-                // break;
-            }
-        }
-        //alert(existe);
-        item.push({ "cantidad": "1" });
-        var data = [{ "id": "1", "value": "NativeScript" }];
-        // read data from the file
-        var fileSystemModule = require("file-system");
-        var fileName = "platosSeleccionados.json";
-        var file = fileSystemModule.knownFolders.documents().getFile(fileName);
-
-        file.writeText(JSON.stringify(item));
-        alert(item);
-    } else {
-        alert(2);
-        item.push({ "cantidad": "1" });
-
-        // read data from the file
-        var fileSystemModule = require("file-system");
-        var fileName = "platosSeleccionados.json";
-        var file = fileSystemModule.knownFolders.documents().getFile(fileName);
-
-        // alert(JSON.stringify(file));
-
-        var data = [{ "id": "1", "value": "NativeScript" }];
-        file.writeText(JSON.stringify(item));
-
-    }
-
-}
-
-function disminuirCantidad(args) {
-    var page = args.object;
-    var parent = page.parent;
-    var id = JSON.stringify(page.id).replace(/aumentar/g, "disminuir").replace(/"/g, "");
-    if (parent) {
-        var btnDisminuir = parent.getViewById(id);
-        if (btnDisminuir) {
-            btnDisminuir.text = "1";
-            alert(btnDisminuir.id);
-        }
-    }
-    return;
-
-    var itemData = args.object;
-    var item = itemData.bindingContext;
-    var xxx = JSON.stringify(item);
-    //alert(xxx.replace(/,/g,"\n"));
-
-    args.object.text = "1";
-    //args.object.isEnabled = false;
-
-
-    return;
-
-    var file = fileSystemModule.knownFolders.documents().getFile(fileName);
-    var data = [{ "id": "1", "value": "NativeScript" }];
-
-    // write data to the file, converted to a JSON string first
-    file.writeText(JSON.stringify(data));
-
-    // read data from the file
-    file.readText().then(function (content) {
-        // content contains the data read from the file
-        alert(content);
-    });
-
-    return;
-
-    var page = args.object;
-    var id = page.getViewById(args.object.id).id;
-    var yyy = id.replace("aumentar", "disminuir");
-    // "disminuir10fe08b0-7f94-11e6-b74a-0f5c494ee820"
-    var xxx = page.getViewById(id).id;
-    alert(xxx);
-    // alert("propertyname:" + args.object.id);
-    // alert("Object:" + args.object.text);
-    // alert("value:" + args.value);
-    // alert("value:" + args.value + "text" + args.propertyText + "css" + args.className);
-}
-exports.aumentarCantidad = aumentarCantidad;
-
 
 
 function buttonForwardTap(args) {
@@ -189,6 +47,33 @@ function flattenLocationProperties(dataItem) {
     }
 }
 
+
+//actualizar footer y botones
+function verificarCantidad(id, total) {
+    var fs = require("file-system");
+    var documents = fs.knownFolders.documents();
+    var fileName = "platosSeleccionados.json";
+    var myFile = documents.getFile(fileName);
+    var cantidad = 0;
+    myFile.readText()
+        .then(function (data) {
+            // Successfully read the file's content.
+            data = JSON.parse(data);
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].Id == id) {
+                    cantidad = data[i].cantidad;
+                    alert(cantidad);
+                }
+                total += (data[i].cantidad * data[i].precio) ;
+            }
+        }, function (error) {
+            // Failed to read from the file.
+            alert(error);
+        });
+        return cantidad;
+}
+
+
 // additional functions
 
 function pageLoaded(args) {
@@ -214,6 +99,7 @@ function pageLoaded(args) {
     _fetchData()
         .then(function (result) {
             var itemsList = [];
+
             result.forEach(function (item) {
                 flattenLocationProperties(item);
 
@@ -227,14 +113,16 @@ function pageLoaded(args) {
 
                     description: item.etiqueta,
 
+                    cantidad: 1,
+
                     // singleItem properties
-                    details: item
+                    details: item,
                 });
             });
 
             viewModel.set('listItems', itemsList);
             viewModel.set('isLoading', false);
-            // alert(itemsList.length);
+            alert(itemsList.length);
         })
         .catch(function onCatch() {
             viewModel.set('isLoading', false);
@@ -253,3 +141,210 @@ function pageLoaded(args) {
 
 // END_CUSTOM_CODE_platos
 exports.pageLoaded = pageLoaded;
+
+
+
+function aumentarCantidad(args) {
+    // clearFile();
+    // agregarCantidad(args)
+}
+exports.disminuirCantidad = disminuirCantidad;
+
+
+function agregarCantidad(args) {
+    var page = args.object;
+    var item = page.bindingContext.details;
+
+    // readFile(item);
+
+    var parent = page.parent;
+    var id = JSON.stringify(page.id).replace(/"/g, "");
+
+    // args.object.isEnabled = false;
+
+    var btnDisminuir = parent.getViewById(id.replace(/agregar/g, "disminuir"));
+    btnDisminuir.opacity = "1"; //ITS WORK
+
+
+    var fs = require("file-system");
+    var documents = fs.knownFolders.documents();
+
+    var fileName = "platosSeleccionados.json";
+    var myFile = documents.getFile(fileName);
+
+    myFile.readText()
+        .then(function (data) {
+            // Successfully read the file's content.
+            var array = [];
+            var pedidos = "";
+            if (data.length > 0) {//si no es el primer pedido
+                var guardado = [data];
+                var nuevo = [JSON.stringify(item)];
+                var sumar = -1;
+
+                var g = JSON.parse(guardado);
+                var n = JSON.parse(nuevo);
+                for (var i = 0; i < g.length; i++) {
+                    if (g[i].Id == n.Id) {
+                        sumar = i;
+                    }
+                }
+                if (sumar == -1) { // si no existe
+                    item.cantidad = 1;
+                    pedidos = data;
+                    pedidos = pedidos.slice(0, -1);
+                    pedidos += ", " + JSON.stringify(item) + "]";
+
+                    // Writing text to the file.
+                    myFile.writeText(pedidos)
+                        .then(function () {
+                            args.object.text = 1;
+                        }, function (error) {
+                            // Failed to write to the file.
+                            alert(error);
+                        });
+                } else {//sumar 1 a cantidad
+                    g[sumar].cantidad += 1;
+                    myFile.writeText(JSON.stringify(g))
+                        .then(function () {
+                            args.object.text = g[sumar].cantidad;
+                        }, function (error) {
+                            // Failed to write to the file.
+                            alert(error);
+                        });
+                }
+            } else {
+                item.cantidad = 1;
+                array.push(item);
+
+                // Writing text to the file.
+                myFile.writeText(JSON.stringify(array))
+                    .then(function () {
+                        args.object.text = 1;
+                    }, function (error) {
+                        // Failed to write to the file.
+                        alert(error);
+                    });
+            }
+        }, function (error) {
+            // Failed to read from the file.
+            alert(error);
+        });
+
+}
+exports.agregarCantidad = agregarCantidad;
+
+
+
+
+// Function read file
+function readFile(item) {
+
+    var fs = require("file-system");
+    var documents = fs.knownFolders.documents();
+
+    var fileName = "platosSeleccionados.json";
+    var myFile = documents.getFile(fileName);
+
+    myFile.readText()
+        .then(function (data) {
+            // Successfully read the file's content.
+            writeFile(item, data);
+        }, function (error) {
+            // Failed to read from the file.
+            alert(error);
+        });
+}
+
+//Clear file function
+function clearFile() {
+    var fs = require("file-system");
+    var documents = fs.knownFolders.documents();
+    var fileName = "platosSeleccionados.json";
+    var myFile = documents.getFile(fileName);
+
+    // var written: boolean;
+    // Writing text to the file.
+    myFile.writeText("")
+        .then(function () {
+            // Succeeded writing to the file.
+            // Getting back the contents of the file.
+            myFile.readText()
+                .then(function (content) {
+                    // Successfully read the file's content.
+                    alert(content);
+                }, function (error) {
+                    // Failed to read from the file.
+                    alert(error);
+                });
+        }, function (error) {
+            // Failed to write to the file.
+            alert(error);
+        });
+}
+
+
+//Removing file function
+function removeFile() {
+    var fs = require("file-system");
+    var documents = fs.knownFolders.documents();
+
+    var fileName = "platosSeleccionados.json";
+    var file = documents.getFile(fileName);
+    file.remove()
+        .then(function (result) {
+            // Success removing the file.
+            alert(fileName + " File removido");
+        }, function (error) {
+            // Failed to remove the file.
+            alert(error);
+        });
+}
+
+function disminuirCantidad(args) {
+    var page = args.object;
+    var parent = page.parent;
+    var id = JSON.stringify(page.id).replace(/"/g, "");
+
+    var btnAugmentar = parent.getViewById(id.replace(/disminuir/g, "agregar"));
+
+
+    var fs = require("file-system");
+    var documents = fs.knownFolders.documents();
+    var fileName = "platosSeleccionados.json";
+    var myFile = documents.getFile(fileName);
+    myFile.readText()
+        .then(function (data) {
+            // Successfully read the file's content.
+            data = JSON.parse(data);
+            for (var i = 0; i < data.length; i++) {
+                if ("disminuir" + data[i].Id == id) {
+                    data[i].cantidad -= 1;
+                    if (data[i].cantidad == 0) {
+                        data.splice(i, 1);
+                        args.object.opacity = "0";
+       	                btnAugmentar.text = "Agregar";
+                    } else {
+                        btnAugmentar.text = data[i].cantidad;
+                    }
+                    // Writing text to the file.
+                    myFile.writeText(data.length > 0 ? JSON.stringify(data) : "")
+                        .then(function () {
+
+                        }, function (error) {
+                            // Failed to write to the file.
+                            alert(error);
+                        });
+
+                }
+            }
+
+        }, function (error) {
+            // Failed to read from the file.
+            alert(error);
+        });
+
+}
+exports.aumentarCantidad = aumentarCantidad;
+
+
