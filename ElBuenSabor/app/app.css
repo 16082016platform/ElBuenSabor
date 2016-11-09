@@ -45,3 +45,43 @@ ActionBar {
 /* 16a2b3 */
 /* f86a44 */
 /* 3f1e57 */
+
+
+/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 09/11/2016 22:17
+*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+    font-family: Flaticon;
+    font-size: 20px;
+    font-style: normal;
+    margin-left: 20px;
+}
+
+
+.flaticon-breakfast-delivery-service:before { content: "\f100"; }
+.flaticon-cell-phone:before { content: "\f101"; }
+.flaticon-checked:before { content: "\f102"; }
+.flaticon-email:before { content: "\f103"; }
+.flaticon-favorite:before { content: "\f104"; }
+.flaticon-food-1:before { content: "\f105"; }
+.flaticon-location-marker:before { content: "\f106"; }
+.flaticon-online-shopping-cart:before { content: "\f107"; }
+.flaticon-padlock:before { content: "\f108"; }
+.flaticon-paper-plane:before { content: "\f109"; }
+.flaticon-recipe:before { content: "\f10a"; }
+.flaticon-right-arrow-circular-button:before { content: "\f10b"; }
+.flaticon-spaghetti:before { content: "\f10c"; }
+.flaticon-store-1:before { content: "\f10d"; }
+.flaticon-waste-bin:before { content: "\f10e"; }
+
+/*END flat icons*/

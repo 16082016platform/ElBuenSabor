@@ -51,10 +51,12 @@
             <ActivityIndicator row="1" busy="{{ isLoading }}" />
  
             <!-- will be seen as a footer -->
-            <GridLayout row="2" cssClass="footer">
+            <GridLayout row="4" cssClass="footer">
                 <StackLayout tap="buttonForwardTap">
                     <Label id="mensajePedidos" text="El carrito entá vacío"/>
-                    <Label id="totalPedidos" text=" 0"/>
+                    <Label  id="totalPedidos" text=" 0"/>
+                    <Label cssClass="flaticon-breakfast-delivery-service"></Label>
+                    <Label cssClass="flaticon-breakfast-delivery-service" ></Label>
                 </StackLayout>
             </GridLayout>
         </GridLayout>
