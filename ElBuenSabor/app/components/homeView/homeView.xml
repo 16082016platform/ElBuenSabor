@@ -1,49 +1,105 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" loaded="pageLoaded" id="homeViewScreen" cssClass="screen">
+<!--<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" loaded="pageLoaded" actionBarHidden="true" backgroundSpanUnderStatusBar="true">-->
     <Page.actionBar>
         <widgets:action-bar />
     </Page.actionBar>
+    <GridLayout>
+        <!-- The parallax background. Give the background a negative margin-top to overlay  -->
+		<!-- the iOS status bar. -->
+		<GridLayout id="backgroundParallax" style="background-image:url('~/images/login/background.jpg');" ios:marginTop="-20" scaleX="1.6" scaleY="1.6"></GridLayout>
 
-    <StackLayout>
 
-        <GridLayout rows="auto, auto, auto, auto, auto" columns="*, *" visibility="{{ signinVisibility }}">
-            <Label text="Correo" cssClass="form-label" />
-            <TextField col="1" text="{{ email }}" cssClass="form-field" />
-            <StackLayout colSpan="2" cssClass="form-item-border" />
+        <GridLayout id="example-background">
+            <GridLayout id="form-content" cssClass="form-content" rows="auto,*,auto,auto" visibility="{{ signinVisibility }}">
+                <StackLayout cssClass="top-border" row="0"/>
+                <ScrollView row="1" cssClass="fields-section">
+                    <StackLayout>
+                        <!-- Email -->
+                        <GridLayout ios:columns="auto,*" android:rows="auto, auto" verticalAlignment="top">
+                            <Label text="Correo" cssClass="field-title" />
+                            <TextField id="email" text="{{ email }}" cssClass="field" ios:col="1" android:row="1" tap="onTextInputTapped" />
+                        </GridLayout>
+                        <StackLayout cssClass="line"/>
+                        <!-- Password -->
+                        <GridLayout ios:columns="auto,*" android:rows="auto, auto" verticalAlignment="top">
+                            <Label text="Contraseña" cssClass="field-title" />
+                            <TextField id="password" text="{{ password }}" secure="{{ showPassword, !showPassword }}" cssClass="field"  ios:col="1" android:row="1" tap="onTextInputTapped" />
+                        </GridLayout>
+                        <StackLayout cssClass="line"/> 
+                        <StackLayout orientation="horizontal" tap="onShowPasswordTapped">
+                            <Image src="{{ showPassword ? '~/resources/checkbox_checked.png' : '~/resources/checkbox_unchecked.png' }}" cssClass="checkbox" />
+                            <Label text="Show password" cssClass="field-switch-title" />
+                        </StackLayout>
+                        <StackLayout cssClass="line"/>
+                        <!-- Recordar -->
+                        <GridLayout columns="*, auto" verticalAlignment="top">
+                            <Label text="Recordarme" cssClass="field-switch-title" />
+                            <Switch  checked="{{ rememberme }}" cssClass="field-switch" />
+                        </GridLayout>
+                    </StackLayout>
+                </ScrollView>
+                <Button row="2" text="Ingresar" cssClass="update" tap="{{ onSignin }}"/>
+                <StackLayout row="3" orientation="vertical">
+                    <Button text="Olvidé mi contraseña" tap="{{ onShowPassword }}" />
+                    <Button text="Registrarme" tap="{{ onShowRegister }}" />
+                </StackLayout>
+            </GridLayout>
 
-            <Label row="1" text="Contraseña" cssClass="form-label" />
-            <TextField row="1" col="1" text="{{ password }}" secure="true" cssClass="form-field" />
-            <StackLayout row="1" colSpan="2" cssClass="form-item-border" />
+            <GridLayout id="form-content" cssClass="form-content" rows="auto,*,auto,auto" visibility="{{ registerVisibility }}">
+                <StackLayout cssClass="top-border" row="0"/>
+                <ScrollView row="1" cssClass="fields-section">
+                    <StackLayout>
+                        <!-- Usuario -->
+                        <GridLayout ios:columns="auto,*" android:rows="auto, auto" verticalAlignment="top">
+                            <Label text="Nombres" cssClass="field-title" />
+                            <TextField id="email" text="{{ displayName }}" cssClass="field" ios:col="1" android:row="1" tap="onTextInputTapped" />
+                        </GridLayout>
+                        <StackLayout cssClass="line"/>
+                        <!-- Email -->
+                        <GridLayout ios:columns="auto,*" android:rows="auto, auto" verticalAlignment="top">
+                            <Label text="Correo" cssClass="field-title" />
+                            <TextField id="email" text="{{ email }}" cssClass="field" ios:col="1" android:row="1" tap="onTextInputTapped" />
+                        </GridLayout>
+                        <StackLayout cssClass="line"/>
+                        <!-- Password -->
+                        <GridLayout ios:columns="auto,*" android:rows="auto, auto" verticalAlignment="top">
+                            <Label text="Contraseña" cssClass="field-title" />
+                            <TextField id="password" text="{{ password }}" secure="{{ showPassword, !showPassword }}" cssClass="field"  ios:col="1" android:row="1" tap="onTextInputTapped" />
+                        </GridLayout>
+                        <StackLayout cssClass="line"/> 
+                        <StackLayout orientation="horizontal" tap="onShowPasswordTapped">
+                            <Image src="{{ showPassword ? '~/resources/checkbox_checked.png' : '~/resources/checkbox_unchecked.png' }}" cssClass="checkbox" />
+                            <Label text="Show password" cssClass="field-switch-title" />
+                        </StackLayout>
+                        
+                    </StackLayout>
+                </ScrollView>
+                <Button row="2" text="Registrar" cssClass="update"  tap="{{ onRegister }}" />
+                <StackLayout row="3" orientation="vertical">
+                    <Button text="Regresar" tap="{{ onShowSignin }}" />
+                </StackLayout>
+            </GridLayout>
 
-            <Label row="2" text="Recordar" cssClass="form-label" />
-            <Switch row="2" col="1" checked="{{ rememberme }}" cssClass="form-field" />
-            <StackLayout row="2" colSpan="2" cssClass="form-item-border" />
+            <GridLayout id="form-content" cssClass="form-content" rows="auto,*,auto,auto" visibility="{{ passwordVisibility }}">
+                <StackLayout cssClass="top-border" row="0"/>
+                <ScrollView row="1" cssClass="fields-section">
+                    <StackLayout>
+                        <!-- Email -->
+                        <GridLayout ios:columns="auto,*" android:rows="auto, auto" verticalAlignment="top">
+                            <Label text="Correo" cssClass="field-title" />
+                            <TextField id="email" text="{{ email }}" cssClass="field" ios:col="1" android:row="1" tap="onTextInputTapped" />
+                        </GridLayout>
+                        
+                    </StackLayout>
+                </ScrollView>
+                <Button row="2" text="Enviar contraseña" cssClass="update"  tap="{{ onPassword }}" />
+                <StackLayout row="3" orientation="vertical">
+                    <Button text="Regresar" tap="{{ onShowSignin }}" />
+                </StackLayout>
+            </GridLayout>
 
-            <widgets:button row="3" colSpan="2" text="Iniciar" tap="{{ onSignin }}" />
-            <Label row="4" colSpan="2" text="Registrar" tap="{{ onShowRegister }}" cssClass="form-link" />
+            <!-- Picture -->
+            <Image id="image" src="~/resources/user.png" cssClass="profile-picture" tap="onProfilePictureTapped"/>
         </GridLayout>
-        <GridLayout rows="auto, auto, auto, auto, auto" columns="*, *" visibility="{{ registerVisibility }}">
-            <Label text="Correo" cssClass="form-label" />
-            <TextField col="1" text="{{ email }}" cssClass="form-field" />
-            <StackLayout colSpan="2" cssClass="form-item-border" />
-
-            <Label row="1" text="Contraseña" cssClass="form-label" />
-            <TextField row="1" col="1" text="{{ password }}" secure="true" cssClass="form-field" />
-            <StackLayout row="1" colSpan="2" cssClass="form-item-border" />
-
-
-            <Label row="2" text="Usuario" cssClass="form-label" />
-            <TextField row="2" col="1" text="{{ displayName }}" cssClass="form-field" />
-            <StackLayout row="2" colSpan="2" cssClass="form-item-border" />
-
-
-            <widgets:button row="3" colSpan="2" text="Crear" tap="{{ onRegister }}" />
-            <Label row="4" colSpan="2" text="Regresar" tap="{{ onShowSignin }}" cssClass="form-link" />
-        </GridLayout>
-        <!-- additional view content -->
-
-        <!-- START_CUSTOM_CODE_homeView -->
-        <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
-
-        <!-- END_CUSTOM_CODE_homeView -->
-    </StackLayout>
+    </GridLayout>
 </Page>

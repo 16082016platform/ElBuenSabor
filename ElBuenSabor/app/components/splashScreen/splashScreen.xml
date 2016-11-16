@@ -1,0 +1,5 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" loaded="pageLoaded" actionBarHidden="true" backgroundSpanUnderStatusBar="true">
+  <GridLayout id="gridSplashScreen">
+    <!-- Add UI declaration here -->
+  </GridLayout>
+</Page>

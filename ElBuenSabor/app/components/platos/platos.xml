@@ -4,8 +4,24 @@
     </Page.actionBar>
  
     <StackLayout>
-        <GridLayout rows="auto, *, auto">
-            <GridLayout row="0" columns="*,*,*,*,*" cssClass="encabezados" opacity="{{ (isReorderActive || isSelectionActive) ? '0.4' : '1'}}">
+        <GridLayout id="gridListaPlatos" rows="auto, *, auto">
+            <!--<ListView row="0" items="{{ categorias }}" itemTap="onListViewCategorias">
+                <ListView.itemTemplate>
+                    <StackLayout col="{{ index }}" orientation="vertical">
+                        <Button  id="{{ 'categorias' + title }}" text="{{ title }}" tap="{{ onTap_AllMode }}" cssClass="{{ Mode == 'ALL' ? 'modeSelectedButtonStyle' : 'modeButtonStyle' }}" isEnabled="{{ !(isReorderActive || isSelectionActive) }}"/>
+                        <GridLayout cssClass="{{ Mode === 'ALL' ? 'selectedBarItemBottomBorder' : 'barItemBottomBorder'}}"/>
+                    </StackLayout>
+                </ListView.itemTemplate>
+            </ListView>-->
+                <Repeater row="0" items="{{ categorias }}" cssClass="encabezados">
+                    <Repeater.itemsLayout>
+                        <StackLayout orientation="horizontal" />
+                    </Repeater.itemsLayout>
+                    <Repeater.itemTemplate>
+                        <Button text="{{ details.nombre }}" id="{{ 'categoria' + details.Id }}" tap="cambioCategoria" width="{{ width }}" cssClass="{{ activo? 'categoriaActiva' : '' }}" isEnabled="{{ !activo }}" />
+                    </Repeater.itemTemplate>
+                </Repeater>
+            <!--<GridLayout row="0" columns="*,*,*,*,*" cssClass="encabezados" opacity="{{ (isReorderActive || isSelectionActive) ? '0.4' : '1'}}">
                 <StackLayout orientation="vertical">
                     <Button text="Menú" tap="{{ onTap_AllMode }}" cssClass="{{ Mode == 'ALL' ? 'modeSelectedButtonStyle' : 'modeButtonStyle' }}" isEnabled="{{ !(isReorderActive || isSelectionActive) }}"/>
                     <GridLayout cssClass="{{ Mode === 'ALL' ? 'selectedBarItemBottomBorder' : 'barItemBottomBorder'}}"/>
@@ -26,8 +42,10 @@
                     <Button text="Otros" tap="{{ onTap_FavoritesMode }}" cssClass="{{ Mode == 'FAVOURITES' ? 'modeSelectedButtonStyle' : 'modeButtonStyle' }}" isEnabled="{{ !(isReorderActive || isSelectionActive) }}"/>
                     <GridLayout cssClass="{{ Mode === 'FAVOURITES' ? 'selectedBarItemBottomBorder' : 'barItemBottomBorder'}}"/>
                 </StackLayout>
-            </GridLayout>
-            <ListView row="1" items="{{ listItems }}" itemTap="onListViewItemTap" style="background-image:url('~/images/platos/backgrounds/bgPlatos.jpg');">
+            </GridLayout>-->
+
+            <!--style="background-image:url('~/images/login/background.jpg');"  style="background-color: #f86a44;"-->
+            <ListView row="1" items="{{ listFilter }}" itemTap="onListViewItemTap">
                 <ListView.itemTemplate>
  
                     <StackLayout>

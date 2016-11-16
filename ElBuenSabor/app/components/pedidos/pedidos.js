@@ -13,6 +13,13 @@ function pageLoaded(args) {
     page.bindingContext = viewModel;
     // additional pageLoaded
 
+    // Create the parallax background effect by scaling the background image
+	page.getViewById("pedidosParallax").animate({
+		scale: { x: 1.2, y: 1.2 },
+		duration: 8000
+	});
+
+
     var item = page.getViewById("aaa");
 
     readFile(item);

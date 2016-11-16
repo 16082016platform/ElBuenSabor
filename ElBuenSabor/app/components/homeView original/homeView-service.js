@@ -78,18 +78,6 @@ Service.prototype.register = function(args, successCallback, errorCallback) {
         })
         .then(successCallback, errorCallback);
 };
-Service.prototype.password = function(args, successCallback, errorCallback) {
-    // validateArgs(args);
-
-    if (!args.email) {
-        throw new Error('Ingrese correo');
-    }else{
-        return dataService.Users.resetPassword({
-            Email: args.email
-        })
-        .then(successCallback, errorCallback);
-    }
-};
 
 Service.prototype.getCurrentUser = function() {
     return dataService.Users.currentUser();

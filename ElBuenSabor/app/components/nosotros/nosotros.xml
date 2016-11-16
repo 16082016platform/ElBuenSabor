@@ -1,4 +1,4 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" loaded="pageLoaded" id="nosotrosScreen" cssClass="screen">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" loaded="pageLoaded" id="nosotrosScreen" cssClass="screen"   actionBarHidden="true" backgroundSpanUnderStatusBar="true">
     <Page.actionBar>
         <widgets:action-bar />
     </Page.actionBar>

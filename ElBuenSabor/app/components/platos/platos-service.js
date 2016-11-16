@@ -7,10 +7,10 @@ var _,
 
     consts;
 
-function Service() {}
+function Service() { }
 
-function onRequestSuccess(data) {
-    return data.result;
+function onRequestSuccess(datos) {
+    return datos.result;
 }
 
 function onRequestFail(err) {
@@ -18,7 +18,7 @@ function onRequestFail(err) {
     return err;
 }
 
-Service.prototype.getAllRecords = function(filter) {
+Service.prototype.getAllRecords = function (filter) {
     var expandExp,
         data = dataService.data('platos');
 
@@ -27,12 +27,11 @@ Service.prototype.getAllRecords = function(filter) {
         foto: {
             'SingleField': 'Uri'
         },
-		imagen: {
-            "TargetTypeName" : "imagenes",
-            "ReturnAs" : "expandImagen"
+        imagen: {
+            "TargetTypeName": "imagenes",
+            "ReturnAs": "expandImagen"
         },
     };
-
     return data.expand(expandExp).get(filter)
         .then(onRequestSuccess.bind(this))
         .catch(onRequestFail.bind(this));

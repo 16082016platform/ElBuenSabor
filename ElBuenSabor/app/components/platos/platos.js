@@ -50,28 +50,26 @@ function flattenLocationProperties(dataItem) {
 
 //actualizar footer y botones
 function verificarCantidad(page) {
-
     var fs = require("file-system");
     var documents = fs.knownFolders.documents();
     var fileName = "platosSeleccionados.json";
     var myFile = documents.getFile(fileName);
     var total = 0, cantidad = 0;
+
     myFile.readText()
         .then(function (data) {
             // Successfully read the file's content.
-            data = JSON.parse(data);
-            for (var i = 0; i < data.length; i++) {
-                cantidad += data[i].cantidad;
-                total += (data[i].cantidad * data[i].precio);
-                var id = "agregar" + data[i].Id;
-                var btnCantidad = page.getViewById(id);
-                // btnCantidad = page.getViewById("agregar7d587a50-9bc2-11e6-941a-934a10b681a9");
-                alert(btnCantidad);
-                // btnCantidad.text = data[i].cantidad;
-            }
             var btnTotal = page.getViewById("totalPedidos");
             var btnMensaje = page.getViewById("mensajePedidos");
-            if (cantidad > 0) {
+            if (data.length > 0) {
+                data = JSON.parse(data);
+                for (var i = 0; i < data.length; i++) {
+                    cantidad += data[i].cantidad;
+                    total += (data[i].cantidad * data[i].precio);
+                    var id = "agregar" + data[i].Id;
+                    var btnCantidad = page.getViewById(id);
+                    btnCantidad.text = data[i].cantidad;
+                }
                 btnMensaje.text = "Confirmar pedido";
                 btnTotal.text = "$" + total + " (" + cantidad + "platos)";
             } else {
@@ -82,7 +80,6 @@ function verificarCantidad(page) {
             // Failed to read from the file.
             alert(error);
         });
-
 }
 
 
@@ -90,7 +87,6 @@ function verificarCantidad(page) {
 
 function pageLoaded(args) {
     var page = args.object;
-
     helpers.platformInit(page);
     page.bindingContext = viewModel;
 
@@ -103,10 +99,8 @@ function pageLoaded(args) {
         if (context && context.filter) {
             return service.getAllRecords(context.filter);
         }
-
         return service.getAllRecords();
     };
-
 
     _fetchData()
         .then(function (result) {
@@ -115,15 +109,10 @@ function pageLoaded(args) {
                 flattenLocationProperties(item);
 
                 itemsList.push({
-
                     icon: '\ue0dc', //globe
-
                     image: item.foto ? item.expandImagen.ruta : item.expandImagen.ruta, //image: item.foto,
-
                     header: item.nombre,
-
                     description: item.etiqueta,
-
                     // singleItem properties
                     details: item,
                 });
@@ -138,23 +127,135 @@ function pageLoaded(args) {
         });
     // additional pageLoaded
 
-    verificarCantidad(page);
 
+    var timer = require("timer");
+    let id = timer.setInterval(() => {
+        var gridListaPlatos = page.getViewById("gridListaPlatos");
+        verificarCantidad(gridListaPlatos);
+        timer.clearInterval(id);
+    }, 1500);
 
     if (isInit) {
         isInit = false;
         // additional pageInit
+        loadCategorias();
+
     }
 
 }
-
+exports.pageLoaded = pageLoaded;
 // START_CUSTOM_CODE_platos
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
 
 // END_CUSTOM_CODE_platos
-exports.pageLoaded = pageLoaded;
+
+function loadCategorias() {
+    var listItems = viewModel.get('listItems');
+    var listFilter = [];
+    var id = "";
+
+    var fs = require("file-system");
+    var documents = fs.knownFolders.documents();
+    var fileName = "categorias.json";
+    var myFile = documents.getFile(fileName);
+
+    myFile.readText()
+        .then(function (data) {
+            data = JSON.parse(data);
+            viewModel.set('categorias', data);
+            
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].activo) {
+                    id = data[i].details.Id;
+                    break;
+                }
+            }
+            for (var i = 0; i < listItems.length; i++) {
+                if (listItems[i].details.categoria == id) {
+                    listFilter.push(listItems[i]);
+                }
+            }
+            viewModel.set('listFilter', listFilter);
+        }, function (error) {
+            alert(error);
+        });
+}
+exports.loadCategorias = loadCategorias;
+
+function cambioCategoria(args) {
+    var listItems = viewModel.get('listItems');
+    var listFilter = [];
+    var page = args.object;
+    var id = JSON.stringify(page.id).replace(/"/g, "");
+
+    var fs = require("file-system");
+    var documents = fs.knownFolders.documents();
+    var fileName = "categorias.json";
+    var myFile = documents.getFile(fileName);
+    myFile.readText()
+        .then(function (data) {
+            data = JSON.parse(data);
+            for (var i = 0; i < data.length; i++) {
+                if ("categoria" + data[i].details.Id == id) {
+                    data[i].activo = true;
+                } else {
+                    data[i].activo = false;
+                }
+            }
+            for (var i = 0; i < listItems.length; i++) {
+                if ("categoria" + listItems[i].details.categoria == id) {
+                    listFilter.push(listItems[i]);
+                }
+            }
+            viewModel.set('categorias', data);
+            viewModel.set('listFilter', listFilter);
+        }, function (error) {
+            alert(error);
+        });
 
 
+
+
+
+
+
+
+
+
+
+
+    // var page = args.object;
+    // var id = JSON.stringify(page.id).replace(/"/g, "");
+
+    // var listItems = viewModel.get('listItems'),
+    //     categorias = viewModel.get('categorias'),
+    //     activoId = "";
+    // for (var i = 0; i < categorias.length; i++) {
+    //     if ("categoria" + categorias[i].details.Id == id) {
+    //         categorias[i].activo = true;
+    //         activoId = categorias[i].details.Id;
+    //     } else {
+    //         categorias[i].activo = false;
+    //     }
+    // }
+    // alert(JSON.stringify(categorias));
+    // viewModel.set('categorias', categorias);
+
+
+
+
+    // var listItems = viewModel.get('listItems'),
+    //     categorias = viewModel.get('categorias'),
+    //     activoId = "";
+    // for (var i = 0; i < categorias.length; i++) {
+    //     if (categorias[i].activo) {
+    //         activoId = categorias[i].details.Id;
+    //         break;
+    //     }
+    // }
+    // listItems.filter()
+}
+exports.cambioCategoria = cambioCategoria;
 
 function aumentarCantidad(args) {
     var page = args.object;
@@ -165,15 +266,14 @@ function aumentarCantidad(args) {
 
     var btnAgregar = parent.getViewById(id.replace(/aumentar/g, "agregar"));
     alert(btnAgregar);
+    removeFile();
 }
-exports.disminuirCantidad = disminuirCantidad;
+exports.aumentarCantidad = aumentarCantidad;
 
 
 function agregarCantidad(args) {
     var page = args.object;
     var item = page.bindingContext.details;
-
-    // readFile(item);
 
     var parent = page.parent;
     var id = JSON.stringify(page.id).replace(/"/g, "");
@@ -248,7 +348,7 @@ function agregarCantidad(args) {
             // Failed to read from the file.
             alert(error);
         });
-    verificarCantidad(parent.parent.parent.parent);
+    verificarCantidad(parent.parent.parent.parent.parent);
 }
 exports.agregarCantidad = agregarCantidad;
 
@@ -329,7 +429,6 @@ function disminuirCantidad(args) {
 
     var btnAugmentar = parent.getViewById(id.replace(/disminuir/g, "agregar"));
 
-
     var fs = require("file-system");
     var documents = fs.knownFolders.documents();
     var fileName = "platosSeleccionados.json";
@@ -356,7 +455,6 @@ function disminuirCantidad(args) {
                             // Failed to write to the file.
                             alert(error);
                         });
-
                 }
             }
 
@@ -364,8 +462,8 @@ function disminuirCantidad(args) {
             // Failed to read from the file.
             alert(error);
         });
-    verificarCantidad(parent.parent.parent.parent);
+    verificarCantidad(parent.parent.parent.parent.parent);
 }
-exports.aumentarCantidad = aumentarCantidad;
+exports.disminuirCantidad = disminuirCantidad;
 
 

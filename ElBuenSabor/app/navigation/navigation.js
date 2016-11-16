@@ -4,7 +4,6 @@ var helpers = require('../utils/widgets/helper'),
 
 function pageLoaded(args) {
     var page = args.object;
-
     helpers.platformInit(page);
     page.bindingContext = navigationViewModel;
     navigationViewModel.set('pageTitle', 'nativeScriptApp');
